@@ -1,4 +1,29 @@
 {
     "cmake.configureOnOpen": false,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "files.associations": {
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "functional": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp",
+        "sstream": "cpp",
+        "stop_token": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp",
+        "__config": "cpp",
+        "__hash_table": "cpp",
+        "__locale": "cpp",
+        "ios": "cpp",
+        "iterator": "cpp",
+        "locale": "cpp",
+        "thread": "cpp",
+        "new": "cpp"
+    }
 }

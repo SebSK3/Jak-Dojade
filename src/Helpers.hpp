@@ -1,16 +1,11 @@
 #pragma once
+#include "City.hpp"
 #include <iostream>
-#include "MyGraph.hpp"
+
+namespace Helpers {
+unsigned int CITY_ID(bool firstUsed);
 
 #ifndef NDEBUG
-void DUMP_CITY(MyGraph *graph) {
-    
-    LinkedList *tempList = graph->edges;
-    std::cout << "Graph " << graph->data->name << " dumped:" << std::endl;
-    while (tempList != NULL) {
-        std::cout << "Connected: " << tempList->data->name 
-        << ", with weight: " << tempList->data->weight << std::endl;
-        tempList = tempList->next;
-    }
-}
+void DUMP_CITY(City *city);
 #endif
+} // namespace Helpers
