@@ -2,7 +2,7 @@
 City::City(char *name, Position position) {
     this->name = name;
     this->pos = position;
-    ID = Helpers::CITY_ID(true);
+    ID = Helpers::CITY_ID(false);
 }
 City::~City() {
     delete name;

@@ -24,6 +24,18 @@
         "iterator": "cpp",
         "locale": "cpp",
         "thread": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "memory_resource": "cpp",
+        "variant": "cpp",
+        "optional": "cpp"
     }
 }
