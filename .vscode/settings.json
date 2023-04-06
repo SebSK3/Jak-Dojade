@@ -36,6 +36,7 @@
         "cwctype": "cpp",
         "memory_resource": "cpp",
         "variant": "cpp",
-        "optional": "cpp"
+        "optional": "cpp",
+        "type_traits": "cpp"
     }
 }

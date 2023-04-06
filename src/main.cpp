@@ -1,14 +1,14 @@
 #include <iostream>
-
-#include "Helpers.hpp"
 #include "City.hpp"
+#include "Helpers.hpp"
 #include "Input.hpp"
 
 int main() {
     Helpers::CITY_ID(true);
     int x,y;
+    LinkedList *cities = new LinkedList;
     std::cin >> x >> y;
-    char **map = Input::GetMap(x, y);
+    char **map = Input::GetMap(cities, x, y);
     for (int i=0; i<y; i++) {
         std::cout << map[i] << std::endl;
     }
@@ -19,6 +19,7 @@ int main() {
         delete[] map[i];
     }
     delete[] map;
+    delete cities;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";

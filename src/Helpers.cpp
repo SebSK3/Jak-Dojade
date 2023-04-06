@@ -12,7 +12,7 @@ unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
 
 #ifndef NDEBUG
 void Helpers::DUMP_CITY(City *city) {
-    LinkedList *tempList = city->edges;
+    ListNode *tempList = city->edges->head;
     std::cout << "Graph " << city->name << "(ID:" << city->ID << ") dumped:" << std::endl;
     while (tempList != NULL) {
         std::cout << "Connected: " << tempList->city->name << " (ID:" << tempList->city->ID
@@ -33,7 +33,7 @@ void Helpers::DUMP_GRAPH(City *city) {
         City *v = queue.front();
         queue.pop();
         DUMP_CITY(v);
-        LinkedList *iter = v->edges;
+        ListNode *iter = v->edges->head;
         while (iter != NULL) {
             City *u = iter->city;
             if (!visited[u->ID]) {
@@ -44,6 +44,5 @@ void Helpers::DUMP_GRAPH(City *city) {
         }
     }
     delete[] visited;
-    
 }
 #endif

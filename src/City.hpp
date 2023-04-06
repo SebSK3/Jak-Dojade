@@ -1,7 +1,7 @@
 #pragma once
 
-#include "LinkedList.hpp"
 #include "Helpers.hpp"
+#include "LinkedList.hpp"
 
 
 class City {

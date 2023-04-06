@@ -1,6 +1,7 @@
 #pragma once
+#include "City.hpp"
 #include <iostream>
 
 namespace Input {
-    char** GetMap(int x, int y);
+    char** GetMap(LinkedList *list, int x, int y);
 }

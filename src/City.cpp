@@ -6,17 +6,11 @@ City::City(char *name, Position position) {
 }
 City::~City() {
     delete name;
-    LinkedList *temp = edges;
-    while (temp != NULL) {
-        LinkedList *deletingList = temp;
-        temp = temp->next;
-        delete deletingList;
-    }
+    delete edges;
 }
 void City::AddConnection(City *city, int weight) {
     if (edges == NULL) {
         edges = new LinkedList;
-        edges->head = edges;
     } 
     edges->append(city, weight);
 }
