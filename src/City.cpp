@@ -2,10 +2,11 @@
 City::City(char *name, Position position) {
     this->name = name;
     this->pos = position;
+    edges = NULL;
     ID = Helpers::CITY_ID(false);
 }
 City::~City() {
-    delete name;
+    delete[] name;
     delete edges;
 }
 void City::AddConnection(City *city, int weight) {

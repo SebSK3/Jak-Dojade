@@ -1,25 +1,28 @@
-#include <iostream>
 #include "City.hpp"
 #include "Helpers.hpp"
 #include "Input.hpp"
+#include <iostream>
 
 int main() {
     Helpers::CITY_ID(true);
-    int x,y;
+    Map *map = new Map;
     LinkedList *cities = new LinkedList;
-    std::cin >> x >> y;
-    char **map = Input::GetMap(cities, x, y);
-    for (int i=0; i<y; i++) {
-        std::cout << map[i] << std::endl;
+    std::cin >> map->x >> map->y;
+    map->lines = Input::GetMap(cities, map->x, map->y);
+    for (int i = 0; i < map->y; i++) {
+        std::cout << map->lines[i] << std::endl;
     }
     
 
+    Input::ExtractNames(map, cities);
+#ifndef NDEBUG
+    // Helpers::DUMP_CITY(cities->head->city);
+    Helpers::DUMP_LIST(cities);
+#endif
 
-    for (int i=0; i<y; i++) {
-        delete[] map[i];
-    }
-    delete[] map;
+
     delete cities;
+    delete map;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";

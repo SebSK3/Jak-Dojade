@@ -13,8 +13,7 @@ public:
 
     LinkedList *edges = NULL;
     char *name;
-    unsigned int ID = 0;
-        
-private:
+    unsigned int ID = 0;   
     Position pos;
+private:
 };

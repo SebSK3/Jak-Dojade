@@ -1,4 +1,49 @@
 #include "Helpers.hpp"
+
+bool Helpers::IsCharacter(char c) {
+    if (c > 64 && c < 91)
+        return true;
+    return false;
+}
+
+bool Helpers::InsideMap(Map *map, Position coords) {
+    if (map->x - 1 < coords.x)
+        return false;
+    if (coords.x < 0) {
+        return false;
+    }
+    if (map->y - 1 < coords.y) {
+        return false;
+    }
+    if (coords.y < 0) {
+        return false;
+    }
+    return true;
+}
+
+char *Helpers::BuildCityName(Map *map, Position coords) {
+    int i = coords.x;
+    int nameLength = 1;
+    while (InsideMap(map, {i, coords.y}) && IsCharacter(map->lines[coords.y][i])) {
+        i--;
+        nameLength++;
+    }
+    nameLength--;
+    int j = coords.x;
+    while (InsideMap(map, {j, coords.y}) && IsCharacter(map->lines[coords.y][j])) {
+        j++;
+        nameLength++;
+    }
+    nameLength--;
+    i++;
+    char *name = new char[nameLength+1];
+    name[nameLength] = '\0';
+    for (int k=0; k<nameLength; k++) {
+        name[k] = map->lines[coords.y][i+k];
+    }
+    return name;
+}
+
 unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
     static unsigned int id;
     if (firstUsed) {
@@ -6,16 +51,28 @@ unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
         return id;
     }
     if (shouldIncrement)
-    id++;
+        id++;
     return id;
 }
 
 #ifndef NDEBUG
 void Helpers::DUMP_CITY(City *city) {
-    ListNode *tempList = city->edges->head;
-    std::cout << "Graph " << city->name << "(ID:" << city->ID << ") dumped:" << std::endl;
+    char *empty = "EMPTY NAME";
+    char *name;
+    if (city->name != NULL) {
+        name = city->name;
+    } else {
+        name = empty;
+    }
+
+    std::cout << "City " << name << "(ID:" << city->ID
+              << ") dumped:" << std::endl;
+    ListNode *tempList = NULL;
+    if (city->edges != NULL)
+        tempList = city->edges->head;
     while (tempList != NULL) {
-        std::cout << "Connected: " << tempList->city->name << " (ID:" << tempList->city->ID
+        std::cout << "Connected: " << tempList->city->name
+                  << " (ID:" << tempList->city->ID
                   << "), with weight: " << tempList->weight << std::endl;
         tempList = tempList->next;
     }
@@ -23,8 +80,8 @@ void Helpers::DUMP_CITY(City *city) {
 void Helpers::DUMP_GRAPH(City *city) {
     int count = CITY_ID(false, false);
     bool *visited = new bool[count];
-    std::queue<City*> queue;
-    for (int i=0; i<count; i++) {
+    std::queue<City *> queue;
+    for (int i = 0; i < count; i++) {
         visited[i] = false;
     }
     queue.push(city);
@@ -44,5 +101,13 @@ void Helpers::DUMP_GRAPH(City *city) {
         }
     }
     delete[] visited;
+}
+void Helpers::DUMP_LIST(LinkedList *list) {
+    ListNode *iter = list->head;
+    while (iter != NULL) {
+        City *u = iter->city;
+        DUMP_CITY(u);
+        iter = iter->next;
+    }
 }
 #endif
