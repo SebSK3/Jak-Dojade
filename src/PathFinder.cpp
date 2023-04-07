@@ -18,7 +18,7 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
 void PathFinder::FindPath(City **cities, City *src, City *dest,
                           bool type, int citiesLength) {
 
-    std::vector<int> dist(citiesLength + 1, MAXINT);
+    std::vector<int> dist(citiesLength + 1, std::numeric_limits<int>::max());
     std::vector<bool> visited(citiesLength + 1, false);
     std::vector<int> parent(citiesLength + 1, -1);
     std::vector<City *> path;
@@ -46,7 +46,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
             int v = node->city->ID;
             int weight = node->weight;
             int newDist = dist[u] + weight;
-            if (!visited[v] && dist[u] != MAXINT && newDist < dist[v]) {
+            if (!visited[v] && newDist < dist[v]) {
                 parent[v] = u;
                 dist[v] = newDist;
                 pq.emplace(dist[v], v);
@@ -58,14 +58,13 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
     if (type) {
         int curr = parent[dest->ID];
         while (curr != src->ID) {
-            path.push_back(cities[curr]);
+            path.emplace_back(cities[curr]);
             curr = parent[curr];
         }
         std::reverse(path.begin(), path.end());
         std::cout << " ";
-        for (City *city : path) {
-            std::cout << city->name << " ";
-        }
+        auto printCity = [](City *city) { std::cout << city->name << " "; };
+        std::for_each(path.begin(), path.end(), printCity);
    }
     std::cout << std::endl;
 

@@ -5,8 +5,8 @@
 #include "LinkedList.hpp"
 #include "Structures.hpp"
 #include <cassert>
+#include <limits>
 
-const int MAXINT = 214748364;
 
 class PathFinder {
   public:
