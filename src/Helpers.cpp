@@ -6,6 +6,18 @@ bool Helpers::IsCharacter(char c) {
     return false;
 }
 
+
+City *Helpers::FindCityByPos(LinkedList *cities, Position pos) {
+    ListNode *temp = cities->head;
+    while (temp != NULL) {
+        if (temp->city->pos == pos) {
+            return temp->city;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+}
+
 bool Helpers::InsideMap(Map *map, Position coords) {
     if (map->x - 1 < coords.x)
         return false;
@@ -109,5 +121,17 @@ void Helpers::DUMP_LIST(LinkedList *list) {
         DUMP_CITY(u);
         iter = iter->next;
     }
+}
+
+void Helpers::DUMP_ROAD(Map *map, int **road) {
+    for (int i=0; i<map->y; i++) {
+        for (int j=0; j<map->x; j++) {
+            std::cout << road[i][j] << "  ";
+        }
+
+        std::cout << std::endl;
+    }
+        std::cout << std::endl;
+        std::cout << std::endl;
 }
 #endif

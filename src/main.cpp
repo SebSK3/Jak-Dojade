@@ -1,12 +1,14 @@
 #include "City.hpp"
 #include "Helpers.hpp"
 #include "Input.hpp"
+#include "PathFinder.hpp"
 #include <iostream>
 
 int main() {
     Helpers::CITY_ID(true);
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
+    PathFinder *pathfinder = new PathFinder;
     std::cin >> map->x >> map->y;
     map->lines = Input::GetMap(cities, map->x, map->y);
     for (int i = 0; i < map->y; i++) {
@@ -15,14 +17,20 @@ int main() {
     
 
     Input::ExtractNames(map, cities);
+    pathfinder->FindEdges(map, cities);
 #ifndef NDEBUG
     // Helpers::DUMP_CITY(cities->head->city);
     Helpers::DUMP_LIST(cities);
 #endif
 
-
+    ListNode *temp = cities->head; 
+    while (temp != NULL) {
+        delete temp->city;
+        temp = temp->next;
+    }
     delete cities;
     delete map;
+    delete pathfinder;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";
