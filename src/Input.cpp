@@ -3,7 +3,7 @@
 void Input::GetFlight(std::unordered_map<std::string, City*>& cities) {
     std::string name1, name2;
     int weight = 0;
-    std::cin >> name1 >> name2 >> weight;
+    scanf("%s %s %d", &name1[0], &name2[0], &weight);
 
     auto it1 = cities.find(name1);
     auto it2 = cities.find(name2);
