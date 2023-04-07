@@ -1,7 +1,6 @@
 #include "Input.hpp"
 
-void Input::GetFlight(std::unordered_map<std::string, City*>& cities) {
-    char name1[150], name2[150];
+void Input::GetFlight(char *name1, char *name2, std::unordered_map<std::string, City*>& cities) {
     int weight = 0;
     std::scanf("%s %s %d", name1, name2, &weight);
 

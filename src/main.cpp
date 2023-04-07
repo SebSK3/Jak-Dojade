@@ -31,8 +31,10 @@ int main() {
     pathfinder->FindEdges(map, cities);
     int flights;
     std::cin >> flights;
+
+    char name1[150], name2[150];
     while (flights > 0) {
-        Input::GetFlight(cities2);
+        Input::GetFlight(name1, name2, cities2);
         flights--;
     }
 
