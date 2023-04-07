@@ -44,7 +44,7 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road, LinkedList *cities) 
                 }
                 road[row][column] = road[current.y][current.x] + 1;
                 visited.push({column,row});
-#ifdef DEBGUG
+#ifdef DEBUG
                 Helpers::DUMP_ROAD(map, road);
 #endif
                 if (map->lines[row][column] == '*') {
