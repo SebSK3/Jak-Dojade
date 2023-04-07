@@ -1,5 +1,6 @@
 #include <queue>
 #include <vector>
+#include <algorithm>
 #include "LinkedList.hpp"
 #include "Structures.hpp"
 #include <cassert>

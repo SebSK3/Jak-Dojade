@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROGRAM="../build/Procesor_CSS"
+PROGRAM="../build/Jak_Dojade"
 
 if [ ! -f "$PROGRAM" ]; then
     echo "Error: Program '$PROGRAM' not found."
@@ -20,6 +20,8 @@ exec 3< "$output_file"
 count=1
 $PROGRAM < "$input_file" | while IFS= read -r line; do
     IFS= read -r expected <&3
+    line="${line%"${line##*[![:space:]]}"}"
+    expected="${expected%"${expected##*[![:space:]]}"}"
     if [[ "$line" != "$expected" ]]; then
         echo "Difference found on line $count:"
         echo "Expected: $expected"

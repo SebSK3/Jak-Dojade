@@ -19,6 +19,7 @@ struct LinkedList {
     int length = 0;
     ~LinkedList();
     City *getCityByName(char *name);
+    City *getCityById(int ID);
     ListNode *getNodeByCityId(int ID);
     void append(City *element, int weight = 0) {
         length++;

@@ -17,8 +17,14 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
 
 void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
                           bool type) {
+    if (src == dest) {
+        std::cout << "0" << std::endl;
+        return;
+    }
     std::vector<int> dist;
     std::vector<bool> visited;
+    std::vector<int> parent(cities->length + 1, -1);
+    std::vector<City*> path;
     for (int i = 0; i <= cities->length; i++) {
         dist.push_back(214748364);
         visited.push_back(false);
@@ -43,13 +49,29 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
             int weight = node->weight;
             if (!visited[v] && dist[u] != 214748364 &&
                 dist[u] + weight < dist[v]) {
-
+                parent[v] = u;
                 dist[v] = dist[u] + weight;
                 if (node->city->ID == dest->ID) {
-                    std::cout << dist[dest->ID] << std::endl;
+                    std::cout << dist[dest->ID];
+                    if (type) {
+                        int curr = parent[dest->ID];
+                        while (curr != src->ID) {
+                            path.push_back(cities->getCityById(curr));
+                            curr = parent[curr];
+                        }
+                        std::reverse(path.begin(), path.end());
+                        std::cout << " ";
+                        for (int i=0; i < path.size(); i++) {
+                            std::cout << path[i]->name;
+                            if (i < path.size()-1) {
+                                std::cout << " ";
+                            }
+                        }
+                    }
+                    std::cout << std::endl;
                     return;
                 }
-                pq.push(std::make_pair(dist[v],v));
+                pq.push(std::make_pair(dist[v], v));
             }
             node = node->next;
         }
