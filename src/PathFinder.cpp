@@ -1,11 +1,11 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
 
-void PathFinder::FindEdges(Map *map, LinkedList *cities) {
+void PathFinder::FindEdges(Map *map, LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
     int **road = createRoad(map);
     ListNode *tempNode = cities->head;
     while (tempNode != NULL) {
-        PathFinder::EdgesBFS(map, tempNode->city, road, cities);
+        PathFinder::EdgesBFS(map, tempNode->city, road, cities, citiesByPosition);
         tempNode = tempNode->next;
     }
 
@@ -70,7 +70,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
 
 }
 void PathFinder::EdgesBFS(Map *map, City *city, int **road,
-                          LinkedList *cities) {
+                          LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
     std::queue<Position> q;
     std::queue<Position> visited;
     q.push(city->pos);
@@ -106,9 +106,7 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                 // Helpers::DUMP_ROAD(map, road);
                 // #endif
                 if (map->lines[row][column] == '*') {
-                    city->AddConnection(
-                        Helpers::FindCityByPos(cities, {column, row}),
-                        road[row][column]);
+                    city->AddConnection(citiesByPosition.find({column,row})->second, road[row][column]);
                 } else {
                     q.push({column, row});
                 }
