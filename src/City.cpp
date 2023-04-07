@@ -1,9 +1,6 @@
 #include "City.hpp"
-City::City(char *name, Position position) {
-    this->name = name;
-    this->pos = position;
-    edges = NULL;
-    ID = Helpers::CITY_ID(false);
+City::City(char *name, Position position): name(name), pos(position), edges(NULL), ID(Helpers::CITY_ID(false)) {
+
 }
 City::~City() {
     delete[] name;
