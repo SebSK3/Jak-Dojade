@@ -1,9 +1,9 @@
 #include "Input.hpp"
 
 void Input::GetFlight(std::unordered_map<std::string, City*>& cities) {
-    std::string name1, name2;
+    char name1[150], name2[150];
     int weight = 0;
-    scanf("%s %s %d", &name1[0], &name2[0], &weight);
+    std::scanf("%s %s %d", name1, name2, &weight);
 
     auto it1 = cities.find(name1);
     auto it2 = cities.find(name2);
