@@ -37,6 +37,11 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
         }
         visited[u] = true;
 
+        // Stop when the destination is visited
+        if (u == dest->ID) {
+            break;
+        }
+
         if (cities[u]->edges == NULL) {
             continue;
         }
@@ -68,8 +73,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
    }
     std::cout << std::endl;
 
-}
-void PathFinder::EdgesBFS(Map *map, City *city, int **road,
+}void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                           LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
     std::queue<Position> q;
     std::queue<Position> visited;
