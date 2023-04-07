@@ -3,6 +3,9 @@ City::City(char *name, Position position) : name(name), pos(position) {
     edges = NULL;
     ID = Helpers::CITY_ID(false);
 }
+City::City() {
+    
+}
 City::~City() {
     delete[] name;
     delete edges;

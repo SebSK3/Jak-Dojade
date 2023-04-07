@@ -43,7 +43,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
     return map;
 }
 
-void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::string, City*>& cities2) {
+void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::string, City*>& cities2, City **citiesArr) {
     if (cities->head == NULL)
         return;
     ListNode *tempCity = cities->head;
@@ -133,6 +133,7 @@ void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::s
         }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
         cities2.insert({tempCity->city->name, tempCity->city});
+        citiesArr[tempCity->city->ID] = tempCity->city;
         tempCity = tempCity->next;
     }
 }

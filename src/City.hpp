@@ -7,7 +7,7 @@
 class City {
 public:
     City(char *name, Position position);
-
+    City();
     ~City();
     void AddConnection(City *city, int weight);
     ListNode *Connection(City *city);

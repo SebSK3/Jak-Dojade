@@ -15,17 +15,17 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
     delete[] road;
 }
 
-void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
-                          bool type) {
+void PathFinder::FindPath(City **cities, City *src, City *dest,
+                          bool type, int citiesLength) {
     if (src == dest) {
         std::cout << "0" << std::endl;
         return;
     }
     std::vector<int> dist;
     std::vector<bool> visited;
-    std::vector<int> parent(cities->length + 1, -1);
+    std::vector<int> parent(citiesLength + 1, -1);
     std::vector<City *> path;
-    for (int i = 0; i <= cities->length; i++) {
+    for (int i = 0; i <= citiesLength; i++) {
         dist.push_back(214748364);
         visited.push_back(false);
     }
@@ -43,10 +43,10 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
         }
         visited[u] = true;
 
-        if (cities == NULL) {
+        if (cities[u]->edges == NULL) {
             continue;
         }
-        ListNode *node = cities->getNodeByCityId(u);
+        ListNode *node = cities[u]->edges->head;
         
         while (node != NULL) {
             int v = node->city->ID;
@@ -64,7 +64,7 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
     if (type) {
         int curr = parent[dest->ID];
         while (curr != src->ID) {
-            path.push_back(cities->getCityById(curr));
+            path.push_back(cities[curr]);
             curr = parent[curr];
         }
         std::reverse(path.begin(), path.end());
