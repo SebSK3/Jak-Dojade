@@ -24,7 +24,7 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
     std::vector<int> dist;
     std::vector<bool> visited;
     std::vector<int> parent(cities->length + 1, -1);
-    std::vector<City*> path;
+    std::vector<City *> path;
     for (int i = 0; i <= cities->length; i++) {
         dist.push_back(214748364);
         visited.push_back(false);
@@ -43,7 +43,11 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
         }
         visited[u] = true;
 
+        if (cities == NULL) {
+            continue;
+        }
         ListNode *node = cities->getNodeByCityId(u);
+        
         while (node != NULL) {
             int v = node->city->ID;
             int weight = node->weight;
@@ -51,32 +55,29 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
                 dist[u] + weight < dist[v]) {
                 parent[v] = u;
                 dist[v] = dist[u] + weight;
-                if (v == dest->ID) {
-                    std::cout << dist[dest->ID];
-                    if (type) {
-                        int curr = parent[dest->ID];
-                        while (curr != src->ID) {
-                            path.push_back(cities->getCityById(curr));
-                            curr = parent[curr];
-                        }
-                        std::reverse(path.begin(), path.end());
-                        std::cout << " ";
-                        for (int i=0; i < path.size(); i++) {
-                            std::cout << path[i]->name;
-                            if (i < path.size()-1) {
-                                std::cout << " ";
-                            }
-                        }
-                    }
-                    std::cout << std::endl;
-                    return;
-                }
                 pq.push(std::make_pair(dist[v], v));
             }
             node = node->next;
         }
     }
-    std::cout << dist[dest->ID] << std::endl;
+    std::cout << dist[dest->ID];
+    if (type) {
+        int curr = parent[dest->ID];
+        while (curr != src->ID) {
+            path.push_back(cities->getCityById(curr));
+            curr = parent[curr];
+        }
+        std::reverse(path.begin(), path.end());
+        std::cout << " ";
+        for (int i = 0; i < path.size(); i++) {
+            std::cout << path[i]->name;
+            if (i < path.size() - 1) {
+                std::cout << " ";
+            }
+        }
+   }
+    std::cout << std::endl;
+
 }
 
 void PathFinder::EdgesBFS(Map *map, City *city, int **road,

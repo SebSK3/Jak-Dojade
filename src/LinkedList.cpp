@@ -12,7 +12,7 @@ LinkedList::~LinkedList() {
 ListNode *LinkedList::getNodeByCityId(int ID) {
     ListNode *temp = head;
     while (temp != NULL) {
-        if (temp->city->ID == ID) {
+        if (temp->city->ID == ID && temp->city->edges != NULL) {
             return temp->city->edges->head;
         }
         temp = temp->next;
