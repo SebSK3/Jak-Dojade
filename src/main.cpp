@@ -15,21 +15,7 @@ int main() {
     
     map->x = x;
     map->y = y;
-    // map->lines = Input::GetMap(cities, map->x, map->y);
-    char **mapNow = new char *[y + 2];
-    mapNow[y + 1] = NULL;
-    for (int i = 0; i < y; i++) {
-        char *line = new char[x + 1];
-        for (int j = 0; j < x; j++) {
-            scanf("%c", &line[j]);
-            if (line[j] == '*') {
-                cities->append(new City(NULL, {j, i}));
-            }
-        }
-        line[x] = '\0';
-        mapNow[i] = line;
-        getchar();
-    }
+    map->lines = Input::GetMap(cities, map->x, map->y);
 
     // for (int i = 0; i < map->y; i++) {
     //     std::cout << map->lines[i] << std::endl;

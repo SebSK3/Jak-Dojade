@@ -16,6 +16,7 @@ struct ListNode {
 };
 struct LinkedList {   
     ListNode *head = NULL;
+    ListNode *tail = NULL;
     int length = 0;
     ~LinkedList();
     City *getCityByName(char *name);
@@ -27,12 +28,11 @@ struct LinkedList {
         /* First element in list */
         if (head == NULL) {
             head = nextElement;
+            tail = nextElement;
             return;
         }
-        ListNode *temp = head;
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = nextElement;
+        tail->next = nextElement;
+        tail = nextElement;
+
     }
 };
