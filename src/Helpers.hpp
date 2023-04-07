@@ -1,6 +1,7 @@
 #pragma once
 #include "City.hpp"
 #include "LinkedList.hpp"
+#include <string.h>
 #include <queue>
 #include <iostream>
 

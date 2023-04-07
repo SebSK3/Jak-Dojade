@@ -69,7 +69,8 @@ unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
 
 #ifndef NDEBUG
 void Helpers::DUMP_CITY(City *city) {
-    char *empty = "EMPTY NAME";
+    char *empty = new char[6];
+    strcpy(empty, "EMPTY");
     char *name;
     if (city->name != NULL) {
         name = city->name;
