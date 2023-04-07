@@ -6,7 +6,7 @@
 #include "Structures.hpp"
 #include <cassert>
 
-const int INT_MAX = 214748364;
+const int MAXINT = 214748364;
 
 class PathFinder {
   public:

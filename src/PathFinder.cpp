@@ -18,7 +18,7 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
 void PathFinder::FindPath(City **cities, City *src, City *dest,
                           bool type, int citiesLength) {
 
-    std::vector<int> dist(citiesLength + 1, INT_MAX);
+    std::vector<int> dist(citiesLength + 1, MAXINT);
     std::vector<bool> visited(citiesLength + 1, false);
     std::vector<int> parent(citiesLength + 1, -1);
     std::vector<City *> path;
@@ -46,7 +46,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
             int v = node->city->ID;
             int weight = node->weight;
             int newDist = dist[u] + weight;
-            if (!visited[v] && dist[u] != INT_MAX && newDist < dist[v]) {
+            if (!visited[v] && dist[u] != MAXINT && newDist < dist[v]) {
                 parent[v] = u;
                 dist[v] = newDist;
                 pq.emplace(dist[v], v);
