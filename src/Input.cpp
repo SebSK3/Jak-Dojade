@@ -1,62 +1,26 @@
 #include "Input.hpp"
 
-void Input::GetFlight(LinkedList *list) {
-    char *name1 = new char[150];
-    char *name2 = new char[150];
+void Input::GetFlight(std::unordered_map<std::string, City*>& cities) {
+    std::string name1, name2;
     int weight = 0;
-    std::cin >> name1;
-    std::cin >> name2;
-    std::cin >> weight;
-    ListNode *temp = list->head;
+    std::cin >> name1 >> name2 >> weight;
 
-    City *src = NULL;
-    City *dest = NULL;
-    while (temp != NULL) {
-        if (strcmp(temp->city->name, name1) == 0) {
-            src = temp->city;
-        }
-        if (strcmp(temp->city->name, name2) == 0) {
-            dest = temp->city;
-        }
-        temp = temp->next;
-    }
-    if (src == NULL || dest == NULL) {
-        delete[] name1;
-        delete[] name2;
+    auto it1 = cities.find(name1);
+    auto it2 = cities.find(name2);
+    if (it1 == cities.end() || it2 == cities.end()) {
         return;
     }
+    City *src = it1->second;
+    City *dest = it2->second;
+
     ListNode *connection = src->Connection(dest);
     if (connection != NULL) {
         if (connection->weight > weight) {
             connection->weight = weight;
         }
-        delete[] name1;
-        delete[] name2;
         return;
     }
     src->AddConnection(dest, weight);
-
-    delete[] name1;
-    delete[] name2;
-    // int i = 0;
-    // int j = 0;
-    // char *line = new char[50];
-    // char **names = new char*[2];
-    // while (true) {
-    //     char c;
-    //     std::cin >> c;
-    //     if (c == ' ') {
-    //         line[i] = '\0';
-    //         names[j] = line;
-    //         i = 0;
-    //         j++;
-    //         if (j == 2) {
-    //         }
-    //     }
-
-    //     line[i] = c;
-    //     i++;
-    // }
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
     char **map = new char *[y + 2];
@@ -79,7 +43,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
     return map;
 }
 
-void Input::ExtractNames(Map *map, LinkedList *cities) {
+void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::string, City*>& cities2) {
     if (cities->head == NULL)
         return;
     ListNode *tempCity = cities->head;
@@ -168,6 +132,7 @@ void Input::ExtractNames(Map *map, LinkedList *cities) {
             }
         }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
+        cities2.insert({tempCity->city->name, tempCity->city});
         tempCity = tempCity->next;
     }
 }

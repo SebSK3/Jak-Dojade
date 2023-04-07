@@ -3,16 +3,19 @@
 #include "Input.hpp"
 #include "PathFinder.hpp"
 #include <iostream>
+#include <string>
+#include <unordered_map>
 
 int main() {
     Helpers::CITY_ID(true);
     int x, y;
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
+    std::unordered_map<std::string, City *> cities2;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
     getchar();
-    
+
     map->x = x;
     map->y = y;
     map->lines = Input::GetMap(cities, map->x, map->y);
@@ -21,12 +24,13 @@ int main() {
     //     std::cout << map->lines[i] << std::endl;
     // }
 
-    Input::ExtractNames(map, cities);
+    Input::ExtractNames(map, cities, cities2);
+    
     pathfinder->FindEdges(map, cities);
     int flights;
     std::cin >> flights;
     while (flights > 0) {
-        Input::GetFlight(cities);
+        Input::GetFlight(cities2);
         flights--;
     }
 
