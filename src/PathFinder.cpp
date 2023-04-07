@@ -17,10 +17,7 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
 
 void PathFinder::FindPath(City **cities, City *src, City *dest,
                           bool type, int citiesLength) {
-    if (src == dest) {
-        std::cout << "0" << std::endl;
-        return;
-    }
+
     std::vector<int> dist;
     std::vector<bool> visited;
     std::vector<int> parent(citiesLength + 1, -1);

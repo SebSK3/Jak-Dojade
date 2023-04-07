@@ -11,7 +11,7 @@ int main() {
     int x, y;
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
-    City** citiesArr;
+    City **citiesArr;
     std::unordered_map<std::string, City *> cities2;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
@@ -24,7 +24,7 @@ int main() {
     // for (int i = 0; i < map->y; i++) {
     //     std::cout << map->lines[i] << std::endl;
     // }
-    citiesArr = new City*[cities->length+1];
+    citiesArr = new City *[cities->length + 1];
 
     Input::ExtractNames(map, cities, cities2, citiesArr);
 
@@ -45,11 +45,16 @@ int main() {
     scanf("%d", &q);
     while (q > 0) {
         scanf("%s %s %d", src, dest, &type);
+        if (strcmp(src, dest) == 0) {
+            std::cout << "0" << std::endl;
+            q--;
+            continue;
+        }
         auto it1 = cities2.find(src);
         auto it2 = cities2.find(dest);
 
-        pathfinder->FindPath(citiesArr, it1->second,
-                             it2->second, type, cities->length+1);
+        pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
+                             cities->length + 1);
         q--;
     }
     delete[] src;
