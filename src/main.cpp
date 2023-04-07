@@ -10,13 +10,15 @@ int main() {
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     PathFinder *pathfinder = new PathFinder;
-    std::cin >> x >> y;
+    scanf("%d %d", &x, &y);
+    getchar();
+    
     map->x = x;
     map->y = y;
     map->lines = Input::GetMap(cities, map->x, map->y);
-    // for (int i = 0; i < map->y; i++) {
-    //     std::cout << map->lines[i] << std::endl;
-    // }
+    for (int i = 0; i < map->y; i++) {
+        std::cout << map->lines[i] << std::endl;
+    }
 
     Input::ExtractNames(map, cities);
     pathfinder->FindEdges(map, cities);

@@ -58,23 +58,22 @@ void Input::GetFlight(LinkedList *list) {
     //     i++;
     // }
 }
-
 char **Input::GetMap(LinkedList *list, int x, int y) {
     char **map = new char *[y + 2];
     map[y + 1] = NULL;
     for (int i = 0; i < y; i++) {
         char *line = new char[x + 1];
-        char c;
         for (int j = 0; j < x; j++) {
-            std::cin >> c;
-            line[j] = c;
-            if (c == '*') {
+            scanf("%c", &line[j]);
+            if (line[j] == '*') {
                 list->append(new City(NULL, {j, i}));
             }
         }
         line[x] = '\0';
         map[i] = line;
+        getchar();
     }
+
 #ifdef DEBUG
     std::cout << "LOADED MAP" << std::endl;
 #endif
