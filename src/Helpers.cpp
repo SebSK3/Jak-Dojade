@@ -1,7 +1,7 @@
 #include "Helpers.hpp"
 
 bool Helpers::IsCharacter(char c) {
-    if (c > 64 && c < 91)
+    if (isdigit(c) || isalnum(c))
         return true;
     return false;
 }

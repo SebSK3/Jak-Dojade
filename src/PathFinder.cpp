@@ -51,7 +51,7 @@ void PathFinder::FindPath(LinkedList *cities, City *src, City *dest,
                 dist[u] + weight < dist[v]) {
                 parent[v] = u;
                 dist[v] = dist[u] + weight;
-                if (node->city->ID == dest->ID) {
+                if (v == dest->ID) {
                     std::cout << dist[dest->ID];
                     if (type) {
                         int curr = parent[dest->ID];
