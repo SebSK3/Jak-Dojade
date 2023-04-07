@@ -6,10 +6,13 @@
 
 int main() {
     Helpers::CITY_ID(true);
+    int x, y;
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     PathFinder *pathfinder = new PathFinder;
-    std::cin >> map->x >> map->y;
+    std::cin >> x >> y;
+    map->x = x;
+    map->y = y;
     map->lines = Input::GetMap(cities, map->x, map->y);
     for (int i = 0; i < map->y; i++) {
         std::cout << map->lines[i] << std::endl;
