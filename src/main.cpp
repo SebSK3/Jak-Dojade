@@ -41,17 +41,13 @@ int main() {
     int q;
     char *src = new char[50];
     char *dest = new char[50];
-    bool type;
-    std::cin >> q;
+    int type;
+    scanf("%d", &q);
     while (q > 0) {
-        std::cin >> src;
-        std::cin >> dest;
-        std::cin >> type;
+        scanf("%s %s %d", src, dest, &type);
         auto it1 = cities2.find(src);
         auto it2 = cities2.find(dest);
-        if (it1 == cities2.end() || it2 == cities2.end()) {
-            return -1;
-        }
+
         pathfinder->FindPath(citiesArr, it1->second,
                              it2->second, type, cities->length+1);
         q--;

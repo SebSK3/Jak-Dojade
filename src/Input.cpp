@@ -12,13 +12,13 @@ void Input::GetFlight(char *name1, char *name2, std::unordered_map<std::string, 
     City *src = it1->second;
     City *dest = it2->second;
 
-    ListNode *connection = src->Connection(dest);
-    if (connection != NULL) {
-        if (connection->weight > weight) {
-            connection->weight = weight;
-        }
-        return;
-    }
+    // ListNode *connection = src->Connection(dest);
+    // if (connection != NULL) {
+    //     if (connection->weight > weight) {
+    //         connection->weight = weight;
+    //     }
+    //     return;
+    // }
     src->AddConnection(dest, weight);
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
