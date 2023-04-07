@@ -10,6 +10,7 @@ public:
 
     ~City();
     void AddConnection(City *city, int weight);
+    ListNode *Connection(City *city);
 
     LinkedList *edges = NULL;
     char *name;

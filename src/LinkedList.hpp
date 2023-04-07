@@ -16,9 +16,12 @@ struct ListNode {
 };
 struct LinkedList {   
     ListNode *head = NULL;
+    int length = 0;
     ~LinkedList();
+    City *getCityByName(char *name);
+    ListNode *getNodeByCityId(int ID);
     void append(City *element, int weight = 0) {
-
+        length++;
         ListNode *nextElement = new ListNode(element, weight);
         /* First element in list */
         if (head == NULL) {

@@ -74,6 +74,7 @@ void Helpers::DUMP_CITY(City *city) {
     char *name;
     if (city->name != NULL) {
         name = city->name;
+        delete[] empty;
     } else {
         name = empty;
     }

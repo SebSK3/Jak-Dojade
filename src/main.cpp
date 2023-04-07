@@ -14,19 +14,41 @@ int main() {
     map->x = x;
     map->y = y;
     map->lines = Input::GetMap(cities, map->x, map->y);
-    for (int i = 0; i < map->y; i++) {
-        std::cout << map->lines[i] << std::endl;
-    }
-    
+    // for (int i = 0; i < map->y; i++) {
+    //     std::cout << map->lines[i] << std::endl;
+    // }
 
     Input::ExtractNames(map, cities);
     pathfinder->FindEdges(map, cities);
+    int flights;
+    std::cin >> flights;
+    while (flights > 0) {
+        Input::GetFlight(cities);
+        flights--;
+    }
+
+    int q;
+    char *src = new char[50];
+    char *dest = new char[50];
+    bool type;
+    std::cin >> q;
+    while (q > 0) {
+        std::cin >> src;
+        std::cin >> dest;
+        std::cin >> type;
+        pathfinder->FindPath(cities, cities->getCityByName(src),
+                             cities->getCityByName(dest), type);
+        q--;
+    }
+    delete[] src;
+    delete[] dest;
+
 #ifdef DEBUG
     // Helpers::DUMP_CITY(cities->head->city);
     Helpers::DUMP_LIST(cities);
 #endif
 
-    ListNode *temp = cities->head; 
+    ListNode *temp = cities->head;
     while (temp != NULL) {
         delete temp->city;
         temp = temp->next;

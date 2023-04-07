@@ -1,8 +1,7 @@
 #include "City.hpp"
-City::City(char *name, Position position): name(name), pos(position) {
-    edges = NULL; 
+City::City(char *name, Position position) : name(name), pos(position) {
+    edges = NULL;
     ID = Helpers::CITY_ID(false);
-
 }
 City::~City() {
     delete[] name;
@@ -11,6 +10,17 @@ City::~City() {
 void City::AddConnection(City *city, int weight) {
     if (edges == NULL) {
         edges = new LinkedList;
-    } 
+    }
     edges->append(city, weight);
+}
+
+ListNode *City::Connection(City *city) {
+    ListNode *temp = edges->head;
+    while (temp != NULL) {
+        if (temp->city == city) {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return NULL;
 }
