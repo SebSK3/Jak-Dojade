@@ -1,5 +1,6 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
+const int INT_MAX = 214748364;
 
 void PathFinder::FindEdges(Map *map, LinkedList *cities) {
     int **road = createRoad(map);
@@ -18,19 +19,16 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities) {
 void PathFinder::FindPath(City **cities, City *src, City *dest,
                           bool type, int citiesLength) {
 
-    std::vector<int> dist;
-    std::vector<bool> visited;
+    std::vector<int> dist(citiesLength + 1, INT_MAX);
+    std::vector<bool> visited(citiesLength + 1, false);
     std::vector<int> parent(citiesLength + 1, -1);
     std::vector<City *> path;
-    for (int i = 0; i <= citiesLength; i++) {
-        dist.push_back(214748364);
-        visited.push_back(false);
-    }
+    
     dist[src->ID] = 0;
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
                         std::greater<std::pair<int, int>>>
         pq;
-    pq.push(std::make_pair(0, src->ID));
+    pq.emplace(0, src->ID);
 
     while (!pq.empty()) {
         int u = pq.top().second;
@@ -48,11 +46,11 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
         while (node != NULL) {
             int v = node->city->ID;
             int weight = node->weight;
-            if (!visited[v] && dist[u] != 214748364 &&
-                dist[u] + weight < dist[v]) {
+            int newDist = dist[u] + weight;
+            if (!visited[v] && dist[u] != INT_MAX && newDist < dist[v]) {
                 parent[v] = u;
-                dist[v] = dist[u] + weight;
-                pq.push(std::make_pair(dist[v], v));
+                dist[v] = newDist;
+                pq.emplace(dist[v], v);
             }
             node = node->next;
         }
@@ -66,17 +64,13 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
         }
         std::reverse(path.begin(), path.end());
         std::cout << " ";
-        for (int i = 0; i < path.size(); i++) {
-            std::cout << path[i]->name;
-            if (i < path.size() - 1) {
-                std::cout << " ";
-            }
+        for (City *city : path) {
+            std::cout << city->name << " ";
         }
    }
     std::cout << std::endl;
 
 }
-
 void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                           LinkedList *cities) {
     std::queue<Position> q;
