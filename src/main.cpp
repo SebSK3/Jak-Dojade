@@ -18,7 +18,7 @@ int main() {
 
     Input::ExtractNames(map, cities);
     pathfinder->FindEdges(map, cities);
-#ifndef NDEBUG
+#ifdef DEBUG
     // Helpers::DUMP_CITY(cities->head->city);
     Helpers::DUMP_LIST(cities);
 #endif
@@ -43,7 +43,7 @@ int main() {
     // city->AddConnection(city3, 3);
     // city->AddConnection(city4, 4);
     // city2->AddConnection(city, 4);
-    // #ifndef NDEBUG
+    // #ifdef DEBUG
     // Helpers::DUMP_GRAPH(city);
     // #endif
     return 0;

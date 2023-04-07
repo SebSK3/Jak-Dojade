@@ -67,7 +67,7 @@ unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
     return id;
 }
 
-#ifndef NDEBUG
+#ifdef DEBUG
 void Helpers::DUMP_CITY(City *city) {
     char *empty = new char[6];
     strcpy(empty, "EMPTY");

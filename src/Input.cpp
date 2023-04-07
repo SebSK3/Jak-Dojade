@@ -16,7 +16,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
         line[x] = '\0';
         map[i] = line;
     }
-#ifndef NDEBUG
+#ifdef DEBUG
     std::cout << "LOADED MAP" << std::endl;
 #endif
     return map;

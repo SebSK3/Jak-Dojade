@@ -19,7 +19,7 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road, LinkedList *cities) 
     std::queue<Position> visited;
     q.push(city->pos);
     visited.push(city->pos);
-    #ifndef NDEBUG
+    #ifdef DEBUG
     for (int i=0; i<map->y; i++) {
         for (int j=0; j<map->x; j++) {
             assert(road[i][j] == -1);
