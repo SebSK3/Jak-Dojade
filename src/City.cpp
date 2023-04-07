@@ -15,12 +15,14 @@ void City::AddConnection(City *city, int weight) {
 }
 
 ListNode *City::Connection(City *city) {
-    ListNode *temp = edges->head;
-    while (temp != NULL) {
-        if (temp->city == city) {
-            return temp;
+    if (edges != NULL) {
+        ListNode *temp = edges->head;
+        while (temp != NULL) {
+            if (temp->city == city) {
+                return temp;
+            }
+            temp = temp->next;
         }
-        temp = temp->next;
     }
     return NULL;
 }

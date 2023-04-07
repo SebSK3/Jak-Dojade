@@ -1,8 +1,8 @@
 #include "Input.hpp"
 
 void Input::GetFlight(LinkedList *list) {
-    char *name1 = new char[50];
-    char *name2 = new char[50];
+    char *name1 = new char[150];
+    char *name2 = new char[150];
     int weight = 0;
     std::cin >> name1;
     std::cin >> name2;
