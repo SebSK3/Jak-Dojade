@@ -6,6 +6,8 @@
 #include "Structures.hpp"
 #include <cassert>
 
+const int INT_MAX = 214748364;
+
 class PathFinder {
   public:
     void FindEdges(Map *map, LinkedList *cities);

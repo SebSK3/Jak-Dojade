@@ -1,6 +1,5 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
-const int INT_MAX = 214748364;
 
 void PathFinder::FindEdges(Map *map, LinkedList *cities) {
     int **road = createRoad(map);
