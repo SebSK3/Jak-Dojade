@@ -65,7 +65,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             node = node->next;
         }
     }
-    std::cout << dist[dest->ID];
+    printf("%d", dist[dest->ID]);
     if (type) {
         int curr = parent[dest->ID];
         while (curr != src->ID) {
@@ -73,11 +73,12 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             curr = parent[curr];
         }
         std::reverse(path.begin(), path.end());
-        std::cout << " ";
-        auto printCity = [](City *city) { std::cout << city->name << " "; };
-        std::for_each(path.begin(), path.end(), printCity);
+        printf(" ");
+        for (const auto &city : path) {
+            printf("%s ", city->name);
+        }
     }
-    std::cout << std::endl;
+    putchar('\n');
     while (!changedIndices.empty()) {
         int i = changedIndices.top();
         changedIndices.pop();
