@@ -66,91 +66,10 @@ void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::s
             }
             if (found) break;
         }
-        /* Loop just so we can break out of it */
-        // while (true) {
-        //     if (Helpers::InsideMap(map, {tempCity->city->pos.x - 1,
-        //                                  tempCity->city->pos.y - 1})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y - 1]
-        //                           [tempCity->city->pos.x - 1])) {
-        //             foundCoords = {tempCity->city->pos.x - 1,
-        //                            tempCity->city->pos.y - 1};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(
-        //             map, {tempCity->city->pos.x - 1, tempCity->city->pos.y})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y]
-        //                           [tempCity->city->pos.x - 1])) {
-        //             foundCoords = {tempCity->city->pos.x - 1,
-        //                            tempCity->city->pos.y};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(map, {tempCity->city->pos.x - 1,
-        //                                  tempCity->city->pos.y + 1})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y + 1]
-        //                           [tempCity->city->pos.x - 1])) {
-        //             foundCoords = {tempCity->city->pos.x - 1,
-        //                            tempCity->city->pos.y + 1};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(
-        //             map, {tempCity->city->pos.x, tempCity->city->pos.y + 1})) {
-        //         if (Helpers::IsCharacter(map->lines[tempCity->city->pos.y + 1]
-        //                                            [tempCity->city->pos.x])) {
-        //             foundCoords = {tempCity->city->pos.x,
-        //                            tempCity->city->pos.y + 1};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(map, {tempCity->city->pos.x + 1,
-        //                                  tempCity->city->pos.y + 1})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y + 1]
-        //                           [tempCity->city->pos.x + 1])) {
-        //             foundCoords = {tempCity->city->pos.x + 1,
-        //                            tempCity->city->pos.y + 1};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(
-        //             map, {tempCity->city->pos.x + 1, tempCity->city->pos.y})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y]
-        //                           [tempCity->city->pos.x + 1])) {
-        //             foundCoords = {tempCity->city->pos.x + 1,
-        //                            tempCity->city->pos.y};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(map, {tempCity->city->pos.x + 1,
-        //                                  tempCity->city->pos.y - 1})) {
-        //         if (Helpers::IsCharacter(
-        //                 map->lines[tempCity->city->pos.y - 1]
-        //                           [tempCity->city->pos.x + 1])) {
-        //             foundCoords = {tempCity->city->pos.x + 1,
-        //                            tempCity->city->pos.y - 1};
-        //             break;
-        //         }
-        //     }
-        //     if (Helpers::InsideMap(
-        //             map, {tempCity->city->pos.x, tempCity->city->pos.y - 1})) {
-        //         if (Helpers::IsCharacter(map->lines[tempCity->city->pos.y - 1]
-        //                                            [tempCity->city->pos.x])) {
-        //             foundCoords = {tempCity->city->pos.x - 1,
-        //                            tempCity->city->pos.y - 1};
-        //             break;
-        //         }
-        //     }
-        // }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
         cities2.insert({tempCity->city->name, tempCity->city});
         citiesArr[tempCity->city->ID] = tempCity->city;
-        citiesByPosition.insert({tempCity->city->pos, tempCity->city});
+        // citiesByPosition.insert({tempCity->city->pos, tempCity->city});
         tempCity = tempCity->next;
     }
 }

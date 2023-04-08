@@ -117,9 +117,10 @@ void PathFinder::EdgesBFS(
                 // Helpers::DUMP_ROAD(map, road);
                 // #endif
                 if (map->lines[row][column] == '*') {
-                    city->AddConnection(
-                        citiesByPosition.find({column, row})->second,
-                        road[row][column]);
+                    city->AddConnection(Helpers::FindCityByPos(cities, {column, row}), road[row][column]);
+                    // city->AddConnection(
+                    //     citiesByPosition.find({column, row})->second,
+                    //     road[row][column]);
                 } else {
                     q.push({column, row});
                 }
