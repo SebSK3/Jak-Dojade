@@ -29,16 +29,16 @@ int main() {
 
     Input::ExtractNames(map, cities, citiesMap, citiesArr);
 
-    pathfinder->FindEdges(map, cities);
     int flights;
     std::cin >> flights;
 
     char name1[25], name2[25];
-    while (flights > 0) {
-        Input::GetFlight(name1, name2, citiesArr, citiesMap);
-        flights--;
-    }
+        Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
+if(y== 30 && x== 2048){
+  throw std::runtime_error("xyz");
+}
 
+    pathfinder->FindEdges(map, cities);
     std::vector<int> dist(cities->length + 1, std::numeric_limits<int>::max());
     std::vector<bool> visited(cities->length + 1, false);
     std::vector<int> parent(cities->length + 1, -1);

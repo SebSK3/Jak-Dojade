@@ -1,7 +1,7 @@
 #include "Helpers.hpp"
 
 bool Helpers::IsCharacter(char c) {
-    if (isdigit(c) || isalnum(c))
+    if (isalnum(c))
         return true;
     return false;
 }
@@ -35,6 +35,7 @@ bool Helpers::InsideMap(Map *map, Position coords) {
 
 char *Helpers::BuildCityName(Map *map, Position coords) {
     int i = coords.x;
+
     int nameLength = 1;
     while (InsideMap(map, {i, coords.y}) && IsCharacter(map->lines[coords.y][i])) {
         i--;

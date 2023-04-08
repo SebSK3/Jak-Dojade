@@ -1,18 +1,18 @@
 #include "Input.hpp"
 
-void Input::GetFlight(char *name1, char *name2, City **citiesArr,
+void Input::GetFlight(int flights, char *name1, char *name2, City **citiesArr,
                       std::unordered_map<std::string, int> &cities) {
-    int weight = 0;
-    std::scanf("%s %s %d", name1, name2, &weight);
 
-    auto it1 = cities.find(name1);
-    auto it2 = cities.find(name2);
-    if (it1 == cities.end() || it2 == cities.end()) {
-        return;
-    }
-    City *src = citiesArr[it1->second];
-    City *dest = citiesArr[it2->second];
+    int weight = 0;
+
+    while (flights > 0) {
+    std::scanf("%s %s %d", name1, name2, &weight);
+    
+    City *src = citiesArr[cities.find(name1)->second];
+    City *dest = citiesArr[cities.find(name2)->second];
     src->AddConnection(dest, weight);
+    flights--;
+    }
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
     char **map = new char *[y + 2];
