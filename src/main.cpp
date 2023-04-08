@@ -12,7 +12,7 @@ int main() {
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     City **citiesArr;
-    std::unordered_map<std::string, int> citiesMap;
+    std::unordered_map<std::string, City*> citiesMap;
     // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);

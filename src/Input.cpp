@@ -1,17 +1,14 @@
 #include "Input.hpp"
 
 void Input::GetFlight(int flights, char *name1, char *name2, City **citiesArr,
-                      std::unordered_map<std::string, int> &cities) {
+                      std::unordered_map<std::string, City*> &cities) {
 
     int weight = 0;
 
     while (flights > 0) {
-    std::scanf("%s %s %d", name1, name2, &weight);
-    
-    City *src = citiesArr[cities.find(name1)->second];
-    City *dest = citiesArr[cities.find(name2)->second];
-    src->AddConnection(dest, weight);
-    flights--;
+        std::scanf("%s %s %d", name1, name2, &weight);
+        cities.find(name1)->second->edges->append(cities.find(name2)->second, weight);
+        flights--;
     }
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
@@ -36,7 +33,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
 }
 
 void Input::ExtractNames(Map *map, LinkedList *cities,
-                         std::unordered_map<std::string, int> &citiesMap,
+                         std::unordered_map<std::string, City*> &citiesMap,
                          City **citiesArr) {
     if (cities->head == NULL)
         return;
@@ -64,7 +61,7 @@ void Input::ExtractNames(Map *map, LinkedList *cities,
                 break;
         }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
-        citiesMap.insert({tempCity->city->name, tempCity->city->ID});
+        citiesMap.insert({tempCity->city->name, tempCity->city});
         citiesArr[tempCity->city->ID] = tempCity->city;
         // citiesByPosition.insert({tempCity->city->pos, tempCity->city});
         tempCity = tempCity->next;
