@@ -8,36 +8,3 @@ LinkedList::~LinkedList() {
         current = next;
     }
 }
-
-ListNode *LinkedList::getNodeByCityId(int ID) {
-    ListNode *temp = head;
-    while (temp != NULL) {
-        if (temp->city->ID == ID && temp->city->edges != NULL) {
-            return temp->city->edges->head;
-        }
-        temp = temp->next;
-    }
-    return NULL;
-}
-
-City *LinkedList::getCityByName(char *name) {
-    ListNode *temp = head;
-    while (temp != NULL) {
-        if (strcmp(temp->city->name, name) == 0) {
-            return temp->city;
-        }
-        temp = temp->next;
-    }
-    return NULL;
-}
-
-City *LinkedList::getCityById(int ID) {
-    ListNode *temp = head;
-    while (temp != NULL) {
-        if (temp->city->ID == ID) {
-            return temp->city;
-        }
-        temp = temp->next;
-    }
-    return NULL;
-}
