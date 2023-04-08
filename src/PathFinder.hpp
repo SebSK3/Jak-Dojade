@@ -12,11 +12,10 @@
 
 class PathFinder {
   public:
-    void FindEdges(Map *map, LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition);
+    void FindEdges(Map *map, LinkedList *cities);
     void FindPath(City **cities, City *src, City *dest, bool type, int citiesLength, std::vector<int> &dist, std::vector<bool> &visited, std::vector<int> &parent);
 
   private:
     int **createRoad(Map *map);
-    void EdgesBFS(Map *map, City *city, int **road, LinkedList *cities, std::unordered_map<Position,
-     City*>& citiesByPosition);
+    void EdgesBFS(Map *map, City *city, int **road, LinkedList *cities);
 };

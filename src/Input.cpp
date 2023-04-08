@@ -1,6 +1,7 @@
 #include "Input.hpp"
 
-void Input::GetFlight(char *name1, char *name2, std::unordered_map<std::string, City*>& cities) {
+void Input::GetFlight(char *name1, char *name2,
+                      std::unordered_map<std::string, City *> &cities) {
     int weight = 0;
     std::scanf("%s %s %d", name1, name2, &weight);
 
@@ -11,14 +12,6 @@ void Input::GetFlight(char *name1, char *name2, std::unordered_map<std::string, 
     }
     City *src = it1->second;
     City *dest = it2->second;
-
-    // ListNode *connection = src->Connection(dest);
-    // if (connection != NULL) {
-    //     if (connection->weight > weight) {
-    //         connection->weight = weight;
-    //     }
-    //     return;
-    // }
     src->AddConnection(dest, weight);
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
@@ -42,7 +35,9 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
     return map;
 }
 
-void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::string, City*>& cities2, City **citiesArr, std::unordered_map<Position, City*>& citiesByPosition) {
+void Input::ExtractNames(Map *map, LinkedList *cities,
+                         std::unordered_map<std::string, City *> &citiesMap,
+                         City **citiesArr) {
     if (cities->head == NULL)
         return;
     ListNode *tempCity = cities->head;
@@ -56,18 +51,20 @@ void Input::ExtractNames(Map *map, LinkedList *cities, std::unordered_map<std::s
                     continue;
                 }
 
-                    int x = tempCity->city->pos.x + dx;
-                    int y = tempCity->city->pos.y + dy;
-                    if (Helpers::InsideMap(map, {x, y}) && Helpers::IsCharacter(map->lines[y][x])) {
-                        foundCoords = {x, y};
-                        found = true;
-                        break;
-                    }
+                int x = tempCity->city->pos.x + dx;
+                int y = tempCity->city->pos.y + dy;
+                if (Helpers::InsideMap(map, {x, y}) &&
+                    Helpers::IsCharacter(map->lines[y][x])) {
+                    foundCoords = {x, y};
+                    found = true;
+                    break;
+                }
             }
-            if (found) break;
+            if (found)
+                break;
         }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
-        cities2.insert({tempCity->city->name, tempCity->city});
+        citiesMap.insert({tempCity->city->name, tempCity->city});
         citiesArr[tempCity->city->ID] = tempCity->city;
         // citiesByPosition.insert({tempCity->city->pos, tempCity->city});
         tempCity = tempCity->next;

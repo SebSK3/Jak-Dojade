@@ -12,8 +12,8 @@ int main() {
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     City **citiesArr;
-    std::unordered_map<std::string, City *> cities2;
-    std::unordered_map<Position, City *> citiesByPos;
+    std::unordered_map<std::string, City *> citiesMap;
+    // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
     getchar();
@@ -27,15 +27,15 @@ int main() {
     // }
     citiesArr = new City *[cities->length + 1];
 
-    Input::ExtractNames(map, cities, cities2, citiesArr, citiesByPos);
+    Input::ExtractNames(map, cities, citiesMap, citiesArr);
 
-    pathfinder->FindEdges(map, cities, citiesByPos);
+    pathfinder->FindEdges(map, cities);
     int flights;
     std::cin >> flights;
 
     char name1[25], name2[25];
     while (flights > 0) {
-        Input::GetFlight(name1, name2, cities2);
+        Input::GetFlight(name1, name2, citiesMap);
         flights--;
     }
 
@@ -54,8 +54,8 @@ int main() {
             q--;
             continue;
         }
-        auto it1 = cities2.find(src);
-        auto it2 = cities2.find(dest);
+        auto it1 = citiesMap.find(src);
+        auto it2 = citiesMap.find(dest);
 
         pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
                              cities->length + 1, dist, visited, parent);
