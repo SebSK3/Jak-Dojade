@@ -1,11 +1,14 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
 
-void PathFinder::FindEdges(Map *map, LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
+void PathFinder::FindEdges(
+    Map *map, LinkedList *cities,
+    std::unordered_map<Position, City *> &citiesByPosition) {
     int **road = createRoad(map);
     ListNode *tempNode = cities->head;
     while (tempNode != NULL) {
-        PathFinder::EdgesBFS(map, tempNode->city, road, cities, citiesByPosition);
+        PathFinder::EdgesBFS(map, tempNode->city, road, cities,
+                             citiesByPosition);
         tempNode = tempNode->next;
     }
 
@@ -15,13 +18,16 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities, std::unordered_map<Posi
     delete[] road;
 }
 
-void PathFinder::FindPath(City **cities, City *src, City *dest,
-                          bool type, int citiesLength, std::vector<int> dist, std::vector<bool> visited, std::vector<int> parent) {
+void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
+                          int citiesLength, std::vector<int> &dist,
+                          std::vector<bool> &visited,
+                          std::vector<int> &parent) {
 
-
+    std::stack<int> changedIndices;
     std::vector<City *> path;
-    
+
     dist[src->ID] = 0;
+    changedIndices.push(src->ID);
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
                         std::greater<std::pair<int, int>>>
         pq;
@@ -34,6 +40,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
             continue;
         }
         visited[u] = true;
+        changedIndices.push(u);
 
         // Stop when the destination is visited
         if (u == dest->ID) {
@@ -44,7 +51,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
             continue;
         }
         ListNode *node = cities[u]->edges->head;
-        
+
         while (node != NULL) {
             int v = node->city->ID;
             int weight = node->weight;
@@ -53,6 +60,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
                 parent[v] = u;
                 dist[v] = newDist;
                 pq.emplace(dist[v], v);
+                changedIndices.push(v);
             }
             node = node->next;
         }
@@ -68,12 +76,19 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
         std::cout << " ";
         auto printCity = [](City *city) { std::cout << city->name << " "; };
         std::for_each(path.begin(), path.end(), printCity);
-   }
+    }
     std::cout << std::endl;
-
+    while (!changedIndices.empty()) {
+        int i = changedIndices.top();
+        changedIndices.pop();
+        dist[i] = std::numeric_limits<int>::max();
+        visited[i] = false;
+        parent[i] = -1;
+    }
 }
-void PathFinder::EdgesBFS(Map *map, City *city, int **road,
-                          LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
+void PathFinder::EdgesBFS(
+    Map *map, City *city, int **road, LinkedList *cities,
+    std::unordered_map<Position, City *> &citiesByPosition) {
     std::queue<Position> q;
     std::queue<Position> visited;
     q.push(city->pos);
@@ -109,7 +124,9 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                 // Helpers::DUMP_ROAD(map, road);
                 // #endif
                 if (map->lines[row][column] == '*') {
-                    city->AddConnection(citiesByPosition.find({column,row})->second, road[row][column]);
+                    city->AddConnection(
+                        citiesByPosition.find({column, row})->second,
+                        road[row][column]);
                 } else {
                     q.push({column, row});
                 }

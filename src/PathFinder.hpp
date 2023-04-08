@@ -1,4 +1,5 @@
 #include <queue>
+#include <stack>
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
@@ -11,7 +12,7 @@
 class PathFinder {
   public:
     void FindEdges(Map *map, LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition);
-    void FindPath(City **cities, City *src, City *dest, bool type, int citiesLength, std::vector<int> dist, std::vector<bool> visited, std::vector<int> parent);
+    void FindPath(City **cities, City *src, City *dest, bool type, int citiesLength, std::vector<int> &dist, std::vector<bool> &visited, std::vector<int> &parent);
 
   private:
     int **createRoad(Map *map);
