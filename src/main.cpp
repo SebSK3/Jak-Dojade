@@ -12,7 +12,7 @@ int main() {
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     City **citiesArr;
-    std::unordered_map<std::string, City *> citiesMap;
+    std::unordered_map<std::string, int> citiesMap;
     // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
@@ -35,7 +35,7 @@ int main() {
 
     char name1[25], name2[25];
     while (flights > 0) {
-        Input::GetFlight(name1, name2, citiesMap);
+        Input::GetFlight(name1, name2, citiesArr, citiesMap);
         flights--;
     }
 

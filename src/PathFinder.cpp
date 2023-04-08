@@ -16,7 +16,7 @@ void PathFinder::FindEdges(
     delete[] road;
 }
 
-void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
+void PathFinder::FindPath(City **cities, int srcID, int destID, bool type,
                           int citiesLength, std::vector<int> &dist,
                           std::vector<bool> &visited,
                           std::vector<int> &parent) {
@@ -24,12 +24,12 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     std::stack<int> changedIndices;
     std::deque<City *> path;
 
-    dist[src->ID] = 0;
-    changedIndices.push(src->ID);
+    dist[srcID] = 0;
+    changedIndices.push(srcID);
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
                         std::greater<std::pair<int, int>>>
         pq;
-    pq.emplace(0, src->ID);
+    pq.emplace(0, srcID);
 
     while (!pq.empty()) {
         int u = pq.top().second;
@@ -41,7 +41,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
         changedIndices.push(u);
 
         // Stop when the destination is visited
-        if (u == dest->ID) {
+        if (u == destID) {
             break;
         }
 
@@ -63,10 +63,10 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             node = node->next;
         }
     }
-    printf("%d", dist[dest->ID]);
+    printf("%d", dist[destID]);
     if (type) {
-        int curr = parent[dest->ID];
-        while (curr != src->ID) {
+        int curr = parent[destID];
+        while (curr != srcID) {
             path.push_front(cities[curr]);
             curr = parent[curr];
         }
@@ -83,8 +83,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
         visited[i] = false;
         parent[i] = -1;
     }
-}
-void PathFinder::EdgesBFS(
+}void PathFinder::EdgesBFS(
     Map *map, City *city, int **road, LinkedList *cities) {
     std::queue<Position> q;
     std::queue<Position> visited;

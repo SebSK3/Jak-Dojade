@@ -13,7 +13,7 @@
 class PathFinder {
   public:
     void FindEdges(Map *map, LinkedList *cities);
-    void FindPath(City **cities, City *src, City *dest, bool type, int citiesLength, std::vector<int> &dist, std::vector<bool> &visited, std::vector<int> &parent);
+    void FindPath(City **cities, int srcID, int destID, bool type, int citiesLength, std::vector<int> &dist, std::vector<bool> &visited, std::vector<int> &parent);
 
   private:
     int **createRoad(Map *map);
