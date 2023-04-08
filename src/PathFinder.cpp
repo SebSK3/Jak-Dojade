@@ -16,11 +16,9 @@ void PathFinder::FindEdges(Map *map, LinkedList *cities, std::unordered_map<Posi
 }
 
 void PathFinder::FindPath(City **cities, City *src, City *dest,
-                          bool type, int citiesLength) {
+                          bool type, int citiesLength, std::vector<int> dist, std::vector<bool> visited, std::vector<int> parent) {
 
-    std::vector<int> dist(citiesLength + 1, std::numeric_limits<int>::max());
-    std::vector<bool> visited(citiesLength + 1, false);
-    std::vector<int> parent(citiesLength + 1, -1);
+
     std::vector<City *> path;
     
     dist[src->ID] = 0;
@@ -73,7 +71,8 @@ void PathFinder::FindPath(City **cities, City *src, City *dest,
    }
     std::cout << std::endl;
 
-}void PathFinder::EdgesBFS(Map *map, City *city, int **road,
+}
+void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                           LinkedList *cities, std::unordered_map<Position, City*>& citiesByPosition) {
     std::queue<Position> q;
     std::queue<Position> visited;

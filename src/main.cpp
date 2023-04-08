@@ -39,6 +39,9 @@ int main() {
         flights--;
     }
 
+    std::vector<int> dist(cities->length + 1, std::numeric_limits<int>::max());
+    std::vector<bool> visited(cities->length + 1, false);
+    std::vector<int> parent(cities->length + 1, -1);
     int q;
     char *src = new char[20];
     char *dest = new char[20];
@@ -55,7 +58,7 @@ int main() {
         auto it2 = cities2.find(dest);
 
         pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
-                             cities->length + 1);
+                             cities->length + 1, dist, visited, parent);
         q--;
     }
     delete[] src;
