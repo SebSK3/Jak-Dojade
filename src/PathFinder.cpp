@@ -24,7 +24,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
                           std::vector<int> &parent) {
 
     std::stack<int> changedIndices;
-    std::vector<City *> path;
+    std::deque<City *> path;
 
     dist[src->ID] = 0;
     changedIndices.push(src->ID);
@@ -69,10 +69,9 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     if (type) {
         int curr = parent[dest->ID];
         while (curr != src->ID) {
-            path.emplace_back(cities[curr]);
+            path.push_front(cities[curr]);
             curr = parent[curr];
         }
-        std::reverse(path.begin(), path.end());
         printf(" ");
         for (const auto &city : path) {
             printf("%s ", city->name);
@@ -94,13 +93,6 @@ void PathFinder::EdgesBFS(
     std::queue<Position> visited;
     q.push(city->pos);
     visited.push(city->pos);
-#ifdef DEBUG
-    for (int i = 0; i < map->y; i++) {
-        for (int j = 0; j < map->x; j++) {
-            assert(road[i][j] == -1);
-        }
-    }
-#endif
     road[city->pos.y][city->pos.x] = 0;
 
     while (!q.empty()) {
