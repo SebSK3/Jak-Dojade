@@ -34,9 +34,6 @@ int main() {
 
     char name1[25], name2[25];
         Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
-if(y== 30 && x== 2048){
-  throw std::runtime_error("xyz");
-}
 
     pathfinder->FindEdges(map, cities);
     std::vector<int> dist(cities->length + 1, std::numeric_limits<int>::max());
