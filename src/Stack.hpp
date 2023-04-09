@@ -2,7 +2,6 @@
 #include "Structures.hpp"
 #include <iostream>
 
-class City;
 
 template <typename T>
 struct StackNode {
