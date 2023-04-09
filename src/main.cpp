@@ -40,7 +40,10 @@ int main() {
     for (int i=0; i<cities->length+1; i++) {
         dist[i] = std::numeric_limits<int>::max();
     }
-    std::vector<bool> visited(cities->length + 1, false);
+    bool *visited = new visited[cities->length+1];
+    for (int i=0; i<cities->length+1; i++) {
+        visited[i] = false;
+    }
     std::vector<int> parent(cities->length + 1, -1);
     int q;
     char *src = new char[20];
