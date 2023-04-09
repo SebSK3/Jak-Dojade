@@ -21,7 +21,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
                           std::vector<bool> &visited,
                           std::vector<int> &parent) {
 
-    std::stack<int> changedIndices;
+    Stack<int> changedIndices;
     std::deque<City *> path;
 
     dist[src->ID] = 0;

@@ -1,5 +1,4 @@
 #include <queue>
-#include <stack>
 #include <vector>
 #include <algorithm>
 #include <deque>
@@ -8,6 +7,7 @@
 #include "Structures.hpp"
 #include <cassert>
 #include <limits>
+#include "Stack.hpp"
 
 
 class PathFinder {
