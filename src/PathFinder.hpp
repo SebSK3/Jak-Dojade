@@ -1,6 +1,5 @@
 #include <queue>
 #include <vector>
-#include <algorithm>
 #include <unordered_map>
 #include "LinkedList.hpp"
 #include "Structures.hpp"
