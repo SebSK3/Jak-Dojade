@@ -82,6 +82,7 @@ int main() {
     delete map;
     delete pathfinder;
     delete[] dist;
+    delete[] visited;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";
