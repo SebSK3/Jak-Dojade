@@ -37,14 +37,14 @@ int main() {
 
     pathfinder->FindEdges(map, cities);
     int *dist = new int[cities->length+1];
+    bool *visited = new bool[cities->length+1];
+    int *parent = new int[cities->length+1];
     for (int i=0; i<cities->length+1; i++) {
         dist[i] = std::numeric_limits<int>::max();
-    }
-    bool *visited = new bool[cities->length+1];
-    for (int i=0; i<cities->length+1; i++) {
         visited[i] = false;
+        parent[i] = -1;
     }
-    std::vector<int> parent(cities->length + 1, -1);
+
     int q;
     char *src = new char[20];
     char *dest = new char[20];
@@ -83,6 +83,7 @@ int main() {
     delete pathfinder;
     delete[] dist;
     delete[] visited;
+    delete[] parent;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";

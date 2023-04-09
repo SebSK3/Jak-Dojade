@@ -19,7 +19,7 @@ void PathFinder::FindEdges(
 void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
                           int citiesLength, int *dist,
                           bool *visited,
-                          std::vector<int> &parent) {
+                          int *parent) {
 
     Stack<int> changedIndices;
     std::deque<City *> path;
