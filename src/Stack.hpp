@@ -7,8 +7,8 @@ template <typename T>
 struct StackNode {
     T element;
     StackNode<T> *previous;
-    StackNode(T element) {
-        this->element = element;
+    StackNode(T el) {
+        element = el;
         previous = NULL;
     }
 };
