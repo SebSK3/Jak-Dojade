@@ -40,7 +40,7 @@ int main() {
     for (int i=0; i<cities->length+1; i++) {
         dist[i] = std::numeric_limits<int>::max();
     }
-    bool *visited = new visited[cities->length+1];
+    bool *visited = new bool[cities->length+1];
     for (int i=0; i<cities->length+1; i++) {
         visited[i] = false;
     }
