@@ -22,7 +22,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
                           int *parent) {
 
     Stack<int> changedIndices;
-    std::deque<City *> path;
+    Stack<City *> path;
 
     dist[src->ID] = 0;
     changedIndices.push(src->ID);
@@ -67,13 +67,15 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     if (type) {
         int curr = parent[dest->ID];
         while (curr != src->ID) {
-            path.push_front(cities[curr]);
+            path.push(cities[curr]);
             curr = parent[curr];
         }
         printf(" ");
-        for (const auto &city : path) {
-            printf("%s ", city->name);
+        while (!path.empty()) {
+            printf("%s ", path.top()->name);
+            path.pop();
         }
+
     }
     putchar('\n');
     while (!changedIndices.empty()) {
