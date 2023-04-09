@@ -36,7 +36,10 @@ int main() {
         Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
 
     pathfinder->FindEdges(map, cities);
-    std::vector<int> dist(cities->length + 1, std::numeric_limits<int>::max());
+    int *dist = new int[cities->length+1];
+    for (int i=0; i<cities->length+1; i++) {
+        dist[i] = std::numeric_limits<int>::max();
+    }
     std::vector<bool> visited(cities->length + 1, false);
     std::vector<int> parent(cities->length + 1, -1);
     int q;
@@ -75,6 +78,7 @@ int main() {
     delete cities;
     delete map;
     delete pathfinder;
+    delete[] dist;
     // char *name = "1";
     // char *name2 = "2";
     // char *name3 = "3";
