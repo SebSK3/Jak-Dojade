@@ -2,26 +2,36 @@
 #include "Structures.hpp"
 #include <iostream>
 
-class City;
 
+template<typename T>
 struct ListNode {
-    City *city;
+    T *data;
     int weight;
-    ListNode *next;
-    ListNode(City *city, int weight=0) {
-        this->city = city;
+    ListNode<T> *next;
+    ListNode() {}
+    ListNode(T *data, int weight = 0) {
+        this->data = data;
         this->weight = weight;
         next = NULL;
     }
 };
+
+template<typename T>
 struct LinkedList {   
-    ListNode *head = NULL;
-    ListNode *tail = NULL;
+    ListNode<T> *head = NULL;
+    ListNode<T> *tail = NULL;
     int length = 0;
-    ~LinkedList();
-    void append(City *element, int weight = 0) {
+    ~LinkedList<T>() {
+        ListNode<T> *current = head;
+        while (current != NULL) {
+            ListNode<T> *next = current->next;
+            delete current;
+            current = next;
+        }
+    }
+    void append(T *element, int weight = 0) {
         length++;
-        ListNode *nextElement = new ListNode(element, weight);
+        ListNode<City> *nextElement = new ListNode<City>(element, weight);
         /* First element in list */
         if (head == NULL) {
             head = nextElement;

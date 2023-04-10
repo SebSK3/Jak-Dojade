@@ -10,9 +10,8 @@ public:
     City();
     ~City();
     void AddConnection(City *city, int weight);
-    ListNode *Connection(City *city);
 
-    LinkedList *edges = NULL;
+    LinkedList<City> *edges = NULL;
     char *name;
     unsigned int ID = 0;   
     Position pos;

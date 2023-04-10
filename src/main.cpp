@@ -35,7 +35,7 @@ int main() {
     Helpers::CITY_ID(true);
     int x, y;
     Map *map = new Map;
-    LinkedList *cities = new LinkedList;
+    LinkedList<City> *cities = new LinkedList<City>;
     City **citiesArr;
     // std::unordered_map<std::string, City *> citiesMap;
     Hashmap citiesMap;
@@ -95,9 +95,9 @@ int main() {
     Helpers::DUMP_LIST(cities);
 #endif
 
-    ListNode *temp = cities->head;
+    ListNode<City> *temp = cities->head;
     while (temp != NULL) {
-        delete temp->city;
+    delete temp->data;
         temp = temp->next;
     }
     delete[] citiesArr;

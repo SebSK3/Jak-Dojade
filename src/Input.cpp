@@ -26,7 +26,7 @@ void Input::GetFlight(int flights, char *name1, char *name2,
         flights--;
     }
 }
-char **Input::GetMap(LinkedList *list, int x, int y) {
+char **Input::GetMap(LinkedList<City> *list, int x, int y) {
     char **map = new char *[y + 2];
     map[y + 1] = NULL;
     for (int i = 0; i < y; i++) {
@@ -47,12 +47,12 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
     return map;
 }
 
-void Input::ExtractNames(Map *map, LinkedList *cities,
+void Input::ExtractNames(Map *map, LinkedList<City> *cities,
                          Hashmap &citiesMap,
                          City **citiesArr) {
     if (cities->head == NULL)
         return;
-    ListNode *tempCity = cities->head;
+    ListNode<City> *tempCity = cities->head;
     while (tempCity != NULL) {
 
         Position foundCoords;
@@ -63,8 +63,8 @@ void Input::ExtractNames(Map *map, LinkedList *cities,
                     continue;
                 }
 
-                int x = tempCity->city->pos.x + dx;
-                int y = tempCity->city->pos.y + dy;
+                int x = tempCity->data->pos.x + dx;
+                int y = tempCity->data->pos.y + dy;
                 if (Helpers::InsideMap(map, {x, y}) &&
                     Helpers::IsCharacter(map->lines[y][x])) {
                     foundCoords = {x, y};
@@ -75,9 +75,9 @@ void Input::ExtractNames(Map *map, LinkedList *cities,
             if (found)
                 break;
         }
-        tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
-        citiesMap.insert(tempCity->city->name, tempCity->city);
-        citiesArr[tempCity->city->ID] = tempCity->city;
+        tempCity->data->name = Helpers::BuildCityName(map, foundCoords);
+        citiesMap.insert(tempCity->data->name, tempCity->data);
+        citiesArr[tempCity->data->ID] = tempCity->data;
         tempCity = tempCity->next;
     }
 }
