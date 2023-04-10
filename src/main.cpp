@@ -61,7 +61,7 @@ int main() {
     char name1[25], name2[25];
     Input::GetFlight(flights, name1, name2, citiesMap);
 
-    // pathfinder->FindEdges(map, cities);
+    pathfinder->FindEdges(map, cities);
     int *dist = new int[cities->length + 1];
     bool *visited = new bool[cities->length + 1];
     int *parent = new int[cities->length + 1];
@@ -75,21 +75,18 @@ int main() {
     char *src = new char[20];
     char *dest = new char[20];
     int type;
-    // scanf("%d", &q);
-    // while (q > 0) {
-    //     scanf("%s %s %d", src, dest, &type);
-    //     if (strcmp(src, dest) == 0) {
-    //         std::cout << "0" << std::endl;
-    //         q--;
-    //         continue;
-    //     }
-    //     auto it1 = citiesMap.find(src);
-    //     auto it2 = citiesMap.find(dest);
-
-    //     pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
-    //                          cities->length + 1, dist, visited, parent);
-    //     q--;
-    // }
+    scanf("%d", &q);
+    while (q > 0) {
+        scanf("%s %s %d", src, dest, &type);
+        if (strcmp(src, dest) == 0) {
+            std::cout << "0" << std::endl;
+            q--;
+            continue;
+        }
+        pathfinder->FindPath(citiesArr, citiesMap.find(src), citiesMap.find(dest), type,
+                             cities->length + 1, dist, visited, parent);
+        q--;
+    }
     delete[] src;
     delete[] dest;
 
