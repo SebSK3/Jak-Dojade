@@ -1,7 +1,7 @@
 #include "Input.hpp"
 
-void Input::GetFlight(int flights, char *name1, char *name2, City **citiesArr,
-                      std::unordered_map<std::string, City *> &cities) {
+void Input::GetFlight(int flights, char *name1, char *name2,
+                      Hashmap &cities) {
 
     int weight = 0;
     char c = '.';
@@ -21,7 +21,7 @@ void Input::GetFlight(int flights, char *name1, char *name2, City **citiesArr,
         name2[i] = '\0';
         i = 0;
         std::scanf("%d", &weight);
-        cities.find(name1)->second->edges->append(cities.find(name2)->second,
+        cities.find(name1)->edges->append(cities.find(name2),
                                                   weight);
         flights--;
     }
@@ -48,7 +48,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
 }
 
 void Input::ExtractNames(Map *map, LinkedList *cities,
-                         std::unordered_map<std::string, City *> &citiesMap,
+                         Hashmap &citiesMap,
                          City **citiesArr) {
     if (cities->head == NULL)
         return;
@@ -76,7 +76,7 @@ void Input::ExtractNames(Map *map, LinkedList *cities,
                 break;
         }
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
-        citiesMap.insert({tempCity->city->name, tempCity->city});
+        citiesMap.insert(tempCity->city->name, tempCity->city);
         citiesArr[tempCity->city->ID] = tempCity->city;
         tempCity = tempCity->next;
     }

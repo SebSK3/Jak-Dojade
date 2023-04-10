@@ -37,7 +37,8 @@ int main() {
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     City **citiesArr;
-    std::unordered_map<std::string, City *> citiesMap;
+    // std::unordered_map<std::string, City *> citiesMap;
+    Hashmap citiesMap;
     // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
@@ -58,9 +59,9 @@ int main() {
     std::cin >> flights;
 
     char name1[25], name2[25];
-    Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
+    Input::GetFlight(flights, name1, name2, citiesMap);
 
-    pathfinder->FindEdges(map, cities);
+    // pathfinder->FindEdges(map, cities);
     int *dist = new int[cities->length + 1];
     bool *visited = new bool[cities->length + 1];
     int *parent = new int[cities->length + 1];
@@ -74,21 +75,21 @@ int main() {
     char *src = new char[20];
     char *dest = new char[20];
     int type;
-    scanf("%d", &q);
-    while (q > 0) {
-        scanf("%s %s %d", src, dest, &type);
-        if (strcmp(src, dest) == 0) {
-            std::cout << "0" << std::endl;
-            q--;
-            continue;
-        }
-        auto it1 = citiesMap.find(src);
-        auto it2 = citiesMap.find(dest);
+    // scanf("%d", &q);
+    // while (q > 0) {
+    //     scanf("%s %s %d", src, dest, &type);
+    //     if (strcmp(src, dest) == 0) {
+    //         std::cout << "0" << std::endl;
+    //         q--;
+    //         continue;
+    //     }
+    //     auto it1 = citiesMap.find(src);
+    //     auto it2 = citiesMap.find(dest);
 
-        pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
-                             cities->length + 1, dist, visited, parent);
-        q--;
-    }
+    //     pathfinder->FindPath(citiesArr, it1->second, it2->second, type,
+    //                          cities->length + 1, dist, visited, parent);
+    //     q--;
+    // }
     delete[] src;
     delete[] dest;
 
@@ -109,20 +110,20 @@ int main() {
     delete[] dist;
     delete[] visited;
     delete[] parent;
-    // char *name = "1";
-    // char *name2 = "2";
-    // char *name3 = "3";
-    // char *name4 = "4";
-    // City *city = new City(name, {0, 0});
-    // City *city2 = new City(name2, {0, 0});
-    // City *city3 = new City(name3, {0, 0});
-    // City *city4 = new City(name4, {0, 0});
-    // city->AddConnection(city2, 2);
-    // city->AddConnection(city3, 3);
-    // city->AddConnection(city4, 4);
-    // city2->AddConnection(city, 4);
-    // #ifdef DEBUG
-    // Helpers::DUMP_GRAPH(city);
-    // #endif
+//     // char *name = "1";
+//     // char *name2 = "2";
+//     // char *name3 = "3";
+//     // char *name4 = "4";
+//     // City *city = new City(name, {0, 0});
+//     // City *city2 = new City(name2, {0, 0});
+//     // City *city3 = new City(name3, {0, 0});
+//     // City *city4 = new City(name4, {0, 0});
+//     // city->AddConnection(city2, 2);
+//     // city->AddConnection(city3, 3);
+//     // city->AddConnection(city4, 4);
+//     // city2->AddConnection(city, 4);
+//     // #ifdef DEBUG
+//     // Helpers::DUMP_GRAPH(city);
+//     // #endif
     return 0;
 }
