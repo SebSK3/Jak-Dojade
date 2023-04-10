@@ -1,31 +1,29 @@
 #include "Input.hpp"
 
 void Input::GetFlight(int flights, char *name1, char *name2, City **citiesArr,
-                      std::unordered_map<std::string, City*> &cities) {
+                      std::unordered_map<std::string, City *> &cities) {
 
     int weight = 0;
     char c = '.';
-    int i=0;
+    int i = 0;
     while (flights > 0) {
         getchar();
         while ((c = getchar()) != ' ') {
             name1[i] = c;
             i++;
-            // std::scanf("%s %s %d", name1, name2, &weight);
         }
         name1[i] = '\0';
         i = 0;
         while ((c = getchar()) != ' ') {
             name2[i] = c;
             i++;
-            // std::scanf("%s %s %d", name1, name2, &weight);
         }
         name2[i] = '\0';
         i = 0;
         std::scanf("%d", &weight);
-            cities.find(name1)->second->edges->append(cities.find(name2)->second, weight);
-
-            flights--;
+        cities.find(name1)->second->edges->append(cities.find(name2)->second,
+                                                  weight);
+        flights--;
     }
 }
 char **Input::GetMap(LinkedList *list, int x, int y) {
@@ -50,7 +48,7 @@ char **Input::GetMap(LinkedList *list, int x, int y) {
 }
 
 void Input::ExtractNames(Map *map, LinkedList *cities,
-                         std::unordered_map<std::string, City*> &citiesMap,
+                         std::unordered_map<std::string, City *> &citiesMap,
                          City **citiesArr) {
     if (cities->head == NULL)
         return;
@@ -80,7 +78,6 @@ void Input::ExtractNames(Map *map, LinkedList *cities,
         tempCity->city->name = Helpers::BuildCityName(map, foundCoords);
         citiesMap.insert({tempCity->city->name, tempCity->city});
         citiesArr[tempCity->city->ID] = tempCity->city;
-        // citiesByPosition.insert({tempCity->city->pos, tempCity->city});
         tempCity = tempCity->next;
     }
 }

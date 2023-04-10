@@ -2,17 +2,42 @@
 #include "Helpers.hpp"
 #include "Input.hpp"
 #include "PathFinder.hpp"
+#include "Hashmap.hpp"
 #include <iostream>
 #include <string>
 #include <unordered_map>
 
 int main() {
+    // Hashmap test;
+    // char *str = new char[5];
+    // char *str2 = new char[5];
+    // char *str3 = new char[5];
+    // str[0] = 'a';
+    // str[1] = 'b';
+    // str[2] = 'c';
+    // str[3] = '\0';
+    // strcpy(str2, str);
+    // strcpy(str3, str);
+    // str2[0] = 'b';
+    // str3[0] = 'c';
+    
+    // City *city = new City(str, {0, 0});
+    // City *city2 = new City(str2, {2, 0});
+    // City *city3 = new City(str3, {5, 0});
+    // test.insert(city->name, city);
+    // test.insert(city2->name, city2);
+    // test.insert(city3->name, city3);
+    // std::cout << test.find(str)->pos.x << std::endl;
+    // std::cout << test.find(str2)->pos.x << std::endl;
+    // std::cout << test.find(str3)->pos.x << std::endl;
+    // delete city;
+
     Helpers::CITY_ID(true);
     int x, y;
     Map *map = new Map;
     LinkedList *cities = new LinkedList;
     City **citiesArr;
-    std::unordered_map<std::string, City*> citiesMap;
+    std::unordered_map<std::string, City *> citiesMap;
     // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
@@ -33,13 +58,13 @@ int main() {
     std::cin >> flights;
 
     char name1[25], name2[25];
-        Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
+    Input::GetFlight(flights, name1, name2, citiesArr, citiesMap);
 
     pathfinder->FindEdges(map, cities);
-    int *dist = new int[cities->length+1];
-    bool *visited = new bool[cities->length+1];
-    int *parent = new int[cities->length+1];
-    for (int i=0; i<cities->length+1; i++) {
+    int *dist = new int[cities->length + 1];
+    bool *visited = new bool[cities->length + 1];
+    int *parent = new int[cities->length + 1];
+    for (int i = 0; i < cities->length + 1; i++) {
         dist[i] = std::numeric_limits<int>::max();
         visited[i] = false;
         parent[i] = -1;
