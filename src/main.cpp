@@ -8,15 +8,6 @@
 #include <string>
 
 int main() {
-    Heap heap;
-    heap.insert(5);
-    heap.insert(1);
-    heap.insert(2);
-    heap.insert(3);
-    heap.insert(4);
-    for (int i=0; i<heap.size; i++) {
-        std::cout << heap.arr[i] << std::endl;
-    }
 //     // Hashmap test;
 //     // char *str = new char[5];
 //     // char *str2 = new char[5];
