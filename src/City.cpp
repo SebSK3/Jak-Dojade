@@ -1,6 +1,6 @@
 #include "City.hpp"
 City::City(char *name, Position position) : name(name), pos(position) {
-    edges = new LinkedList<City>;
+    edges = new LinkedList<City*>;
     ID = Helpers::CITY_ID(false);
 }
 City::~City() {

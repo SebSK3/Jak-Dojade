@@ -12,7 +12,7 @@ int main() {
     Helpers::CITY_ID(true); 
 
     Map *map = new Map;
-    LinkedList<City> *cities = new LinkedList<City>;
+    LinkedList<City*> *cities = new LinkedList<City*>;
     City **citiesArr;
     Hashmap citiesMap;
 
@@ -68,7 +68,7 @@ int main() {
     delete[] src;
     delete[] dest;
 
-    ListNode<City> *temp = cities->head;
+    ListNode<City*> *temp = cities->head;
     while (temp != NULL) {
     delete temp->data;
         temp = temp->next;

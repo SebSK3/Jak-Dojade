@@ -6,8 +6,8 @@ bool Helpers::IsCharacter(char c) {
     return false;
 }
 
-City *Helpers::FindCityByPos(LinkedList<City> *cities, Position pos) {
-    ListNode<City> *temp = cities->head;
+City *Helpers::FindCityByPos(LinkedList<City*> *cities, Position pos) {
+    ListNode<City*> *temp = cities->head;
     while (temp != NULL) {
         if (temp->data->pos == pos) {
             return temp->data;
@@ -116,7 +116,7 @@ void Helpers::DUMP_GRAPH(City *city) {
     }
     delete[] visited;
 }
-void Helpers::DUMP_LIST(LinkedList<City> *list) {
+void Helpers::DUMP_LIST(LinkedList<City*> *list) {
     ListNode *iter = list->head;
     while (iter != NULL) {
         City *u = iter->city;

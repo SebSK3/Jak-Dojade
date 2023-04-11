@@ -6,10 +6,10 @@ class City;
 
 template<typename T>
 struct ListNode {
-    T *data;
+    T data;
     int weight;
     ListNode<T> *next;
-    ListNode(T *data, int weight = 0) {
+    ListNode(T data, int weight = 0) {
         this->data = data;
         this->weight = weight;
         next = NULL;
@@ -29,9 +29,9 @@ struct LinkedList {
             current = next;
         }
     }
-    void append(T *element, int weight = 0) {
+    void append(T element, int weight = 0) {
         length++;
-        ListNode<City> *nextElement = new ListNode<City>(element, weight);
+        ListNode<T> *nextElement = new ListNode<T>(element, weight);
         /* First element in list */
         if (head == NULL) {
             head = nextElement;
