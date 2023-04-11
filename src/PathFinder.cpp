@@ -41,10 +41,10 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             break;
         }
 
-        if (cities[u]->edges == NULL) {
+        if (cities[u]->edges.length == 0) {
             continue;
         }
-        ListNode<City*> *node = cities[u]->edges->head;
+        ListNode<City*> *node = cities[u]->edges.head;
 
         while (node != NULL) {
             int v = node->data->ID;

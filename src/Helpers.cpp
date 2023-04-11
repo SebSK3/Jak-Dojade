@@ -82,8 +82,8 @@ void Helpers::DUMP_CITY(City *city) {
     std::cout << "City " << name << "(ID:" << city->ID
               << ") dumped:" << std::endl;
     ListNode *tempList = NULL;
-    if (city->edges != NULL)
-        tempList = city->edges->head;
+    if (city->edges.length != 0)
+        tempList = city->edges.head;
     while (tempList != NULL) {
         std::cout << "Connected: " << tempList->city->name
                   << " (ID:" << tempList->city->ID
@@ -104,7 +104,7 @@ void Helpers::DUMP_GRAPH(City *city) {
         City *v = queue.front();
         queue.pop();
         DUMP_CITY(v);
-        ListNode *iter = v->edges->head;
+        ListNode *iter = v->edges.head;
         while (iter != NULL) {
             City *u = iter->city;
             if (!visited[u->ID]) {

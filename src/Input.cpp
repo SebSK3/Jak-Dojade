@@ -21,7 +21,7 @@ void Input::GetFlight(int flights, char *name1, char *name2,
         name2[i] = '\0';
         i = 0;
         std::scanf("%d", &weight);
-        cities.find(name1)->edges->append(cities.find(name2),
+        cities.find(name1)->edges.append(cities.find(name2),
                                                   weight);
         flights--;
     }
