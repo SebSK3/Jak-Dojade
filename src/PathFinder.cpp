@@ -24,37 +24,36 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     dist[src->ID] = 0;
     changedIndices.push(src->ID);
 
-    PriorityQueue pq;
-    pq.insert(0, src->ID);
+    PriorityQueue queue;
+    queue.insert(0, src->ID);
 
-    while (!pq.empty()) {
-        unsigned int u = pq.getMin();
-        pq.pop();
-        if (visited[u]) {
+    while (!queue.empty()) {
+        unsigned int currNode = queue.getMin();
+        queue.pop();
+        if (visited[currNode]) {
             continue;
         }
-        visited[u] = true;
-        changedIndices.push(u);
+        visited[currNode] = true;
+        changedIndices.push(currNode);
 
-        // Stop when the destination is visited
-        if (u == dest->ID) {
+        if (currNode == dest->ID) {
             break;
         }
 
-        if (cities[u]->edges.length == 0) {
+        if (cities[currNode]->edges.length == 0) {
             continue;
         }
-        ListNode<City*> *node = cities[u]->edges.head;
+        ListNode<City*> *node = cities[currNode]->edges.head;
 
         while (node != NULL) {
-            int v = node->data->ID;
+            int neighborID = node->data->ID;
             int weight = node->weight;
-            int newDist = dist[u] + weight;
-            if (!visited[v] && newDist < dist[v]) {
-                parent[v] = u;
-                dist[v] = newDist;
-                pq.insert(dist[v], v);
-                changedIndices.push(v);
+            int newDist = dist[currNode] + weight;
+            if (!visited[neighborID] && newDist < dist[neighborID]) {
+                parent[neighborID] = currNode;
+                dist[neighborID] = newDist;
+                queue.insert(dist[neighborID], neighborID);
+                changedIndices.push(neighborID);
             }
             node = node->next;
         }
@@ -83,7 +82,6 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
 }
 void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                           LinkedList<City*> *cities) {
-
     Queue<Position> q;
     Queue<Position> visited;
     q.push(city->pos);
