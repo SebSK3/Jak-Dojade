@@ -26,13 +26,12 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
 
     dist[src->ID] = 0;
     changedIndices.push(src->ID);
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
-                        std::greater<std::pair<int, int>>>
-        pq;
-    pq.emplace(0, src->ID);
+
+    PriorityQueue pq;
+    pq.insert(0, src->ID);
 
     while (!pq.empty()) {
-        int u = pq.top().second;
+        int u = pq.getMin();
         pq.pop();
         if (visited[u]) {
             continue;
@@ -57,7 +56,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             if (!visited[v] && newDist < dist[v]) {
                 parent[v] = u;
                 dist[v] = newDist;
-                pq.emplace(dist[v], v);
+                pq.insert(dist[v], v);
                 changedIndices.push(v);
             }
             node = node->next;
