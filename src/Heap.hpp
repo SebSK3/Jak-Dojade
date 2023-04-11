@@ -1,14 +1,15 @@
 #pragma once
 #include "City.hpp"
-#include "Config.hpp"
+const int CAPACITY_HEAPX = 500;
 struct Heap {
     int *arr;
     int *vals;
     int size = 0;
-    int capacity = CAPACITY_HEAP;
+    int capacity;
     Heap() {
-        arr = new int[capacity];
-        vals = new int[capacity];
+        arr = new int[CAPACITY_HEAPX];
+        vals = new int[CAPACITY_HEAPX];
+        capacity = CAPACITY_HEAPX;
     }
     ~Heap() {
         delete[] arr;
@@ -40,9 +41,7 @@ struct Heap {
     }
     void insert(int num, int val) {
         if (size >= capacity) {
-            capacity += CAPACITY_REALLOC_EVERY;
-            arr = (int*)realloc(arr, capacity * sizeof(int));
-            vals = (int*)realloc(vals, capacity * sizeof(int));
+            // Cannot insert more elements, the heap is full
             return;
         }
 
