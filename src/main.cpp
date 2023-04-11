@@ -5,7 +5,6 @@
 #include "Hashmap.hpp"
 #include <iostream>
 #include <string>
-#include <unordered_map>
 
 int main() {
     // Hashmap test;
@@ -37,9 +36,7 @@ int main() {
     Map *map = new Map;
     LinkedList<City> *cities = new LinkedList<City>;
     City **citiesArr;
-    // std::unordered_map<std::string, City *> citiesMap;
     Hashmap citiesMap;
-    // std::unordered_map<Position, City *> citiesByPos;
     PathFinder *pathfinder = new PathFinder;
     scanf("%d %d", &x, &y);
     getchar();
