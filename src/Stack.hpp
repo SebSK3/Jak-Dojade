@@ -6,7 +6,7 @@ template <typename T>
 struct StackNode {
     T element;
     StackNode<T> *previous;
-    StackNode(T el) {
+    explicit StackNode(T el) {
         element = el;
         previous = NULL;
     }
@@ -24,10 +24,10 @@ struct Stack {
             delete deletingNode;
         }
     }
-    bool empty() {
+    const bool empty() {
         return length == 0 ? true : false;
     }
-    T top() {
+    const T top() {
         return head->element;
     }
     void push(T element) {

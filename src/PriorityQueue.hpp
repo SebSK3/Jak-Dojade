@@ -8,7 +8,7 @@ struct PriorityQueue {
         heap.insert(num, val);
     }
     
-    int getMin() {
+    const int getMin() {
         if (heap.size == 0) {
             return -1;
         }
@@ -23,7 +23,7 @@ struct PriorityQueue {
         heap.size--;
         heap.heapify(0);
     }
-    bool empty() {
+    const bool empty() {
         return heap.size == 0;
     }
 };

@@ -9,7 +9,6 @@ struct ListNode {
     T *data;
     int weight;
     ListNode<T> *next;
-    ListNode() {}
     ListNode(T *data, int weight = 0) {
         this->data = data;
         this->weight = weight;

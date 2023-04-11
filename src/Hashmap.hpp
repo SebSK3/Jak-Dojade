@@ -27,9 +27,9 @@ struct Hashmap {
         delete[] map;
     }
 
-    int hash(char *str) {
+    static int hash(char *str) {
         unsigned long int hash = 0;
-        for (int i = 0; i < strlen(str); i++) {
+        for (unsigned int i = 0; i < strlen(str); i++) {
             hash = str[i] + (hash << 6) + (hash << 16) - hash;
         }
         return hash % CAPACITY;

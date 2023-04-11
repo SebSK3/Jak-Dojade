@@ -13,10 +13,10 @@ struct Heap {
         delete[] arr;
         delete[] vals;
     }
-    int parent(int i) { return (i - 1) / 2; }
-    int left(int i) { return 2 * i + 1; }
-    int right(int i) { return 2 * i + 2; }
-    void swap(int &l, int &r) {
+    static int parent(int i) { return (i - 1) / 2; }
+    static int left(int i) { return 2 * i + 1; }
+    static int right(int i) { return 2 * i + 2; }
+    static void swap(int &l, int &r) {
         int temp = l;
         l = r;
         r = temp;

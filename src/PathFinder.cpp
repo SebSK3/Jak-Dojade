@@ -17,7 +17,7 @@ void PathFinder::FindEdges(
 }
 
 void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
-                          int citiesLength, int *dist,
+                        int *dist,
                           bool *visited,
                           int *parent) {
 
@@ -31,7 +31,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     pq.insert(0, src->ID);
 
     while (!pq.empty()) {
-        int u = pq.getMin();
+        unsigned int u = pq.getMin();
         pq.pop();
         if (visited[u]) {
             continue;
@@ -64,7 +64,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     }
     printf("%d", dist[dest->ID]);
     if (type) {
-        int curr = parent[dest->ID];
+        unsigned int curr = parent[dest->ID];
         while (curr != src->ID) {
             path.push(cities[curr]);
             curr = parent[curr];

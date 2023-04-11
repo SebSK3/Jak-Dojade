@@ -4,9 +4,9 @@ void Input::GetFlight(int flights, char *name1, char *name2,
                       Hashmap &cities) {
 
     int weight = 0;
-    char c = '.';
     int i = 0;
     while (flights > 0) {
+        char c = '.';
         getchar();
         while ((c = getchar()) != ' ') {
             name1[i] = c;

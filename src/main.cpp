@@ -82,7 +82,7 @@ int main() {
             continue;
         }
         pathfinder->FindPath(citiesArr, citiesMap.find(src), citiesMap.find(dest), type,
-                             cities->length + 1, dist, visited, parent);
+                            dist, visited, parent);
         q--;
     }
     delete[] src;
