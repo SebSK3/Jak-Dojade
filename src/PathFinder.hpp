@@ -2,7 +2,6 @@
 #include "LinkedList.hpp"
 #include "Structures.hpp"
 #include "Queue.hpp"
-#include <cassert>
 #include <limits>
 #include "Stack.hpp"
 

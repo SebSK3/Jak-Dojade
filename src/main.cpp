@@ -3,9 +3,7 @@
 #include "Input.hpp"
 #include "PathFinder.hpp"
 #include "Hashmap.hpp"
-#include "Heap.hpp"
 #include <iostream>
-#include <string>
 
 int main() {
     /* Start the function to give every city unique ID */

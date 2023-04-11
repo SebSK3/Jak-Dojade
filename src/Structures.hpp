@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 struct Map {
     int x, y;
     char **lines;

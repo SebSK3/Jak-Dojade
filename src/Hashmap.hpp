@@ -1,7 +1,7 @@
 #pragma once
-#include "string.h"
+#include "Config.hpp"
+#include <string.h>
 
-const int CAPACITY = 10001;
 
 struct Hashmap {
     int size = 0;
@@ -9,9 +9,9 @@ struct Hashmap {
     City ***citiesArr;
 
     Hashmap() {
-        map = new char**[CAPACITY];
-        citiesArr = new City**[CAPACITY];
-        for (int i = 0; i < CAPACITY; i++) {
+        map = new char**[CAPACITY_HASHMAP];
+        citiesArr = new City**[CAPACITY_HASHMAP];
+        for (int i = 0; i < CAPACITY_HASHMAP; i++) {
             map[i] = nullptr;
             citiesArr[i] = nullptr;
         }
@@ -19,7 +19,7 @@ struct Hashmap {
     }
 
     ~Hashmap() {
-        for (int i = 0; i < CAPACITY; i++) {
+        for (int i = 0; i < CAPACITY_HASHMAP; i++) {
             delete[] citiesArr[i];
             delete[] map[i];
         }
@@ -32,7 +32,7 @@ struct Hashmap {
         for (unsigned int i = 0; i < strlen(str); i++) {
             hash = str[i] + (hash << 6) + (hash << 16) - hash;
         }
-        return hash % CAPACITY;
+        return hash % CAPACITY_HASHMAP;
     }
 
     void insert(char *str, City *city) {
