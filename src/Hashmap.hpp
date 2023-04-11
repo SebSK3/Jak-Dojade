@@ -5,8 +5,8 @@ const int CAPACITY = 10001;
 
 struct Hashmap {
     int size = 0;
-    char ***map; // changed to char***
-    City ***citiesArr; // changed to City***
+    char ***map;
+    City ***citiesArr;
 
     Hashmap() {
         map = new char**[CAPACITY];

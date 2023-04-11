@@ -6,7 +6,6 @@ bool Helpers::IsCharacter(char c) {
     return false;
 }
 
-
 City *Helpers::FindCityByPos(LinkedList<City> *cities, Position pos) {
     ListNode<City> *temp = cities->head;
     while (temp != NULL) {

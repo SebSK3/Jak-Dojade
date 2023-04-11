@@ -41,9 +41,7 @@ char **Input::GetMap(LinkedList<City> *list, int x, int y) {
         map[i] = line;
         getchar();
     }
-#ifdef DEBUG
-    std::cout << "LOADED MAP" << std::endl;
-#endif
+
     return map;
 }
 
