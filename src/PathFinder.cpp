@@ -1,8 +1,7 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
 
-void PathFinder::FindEdges(
-    Map *map, LinkedList<City> *cities) {
+void PathFinder::FindEdges(Map *map, LinkedList<City> *cities) {
     int **road = createRoad(map);
     ListNode<City> *tempNode = cities->head;
     while (tempNode != NULL) {
@@ -17,9 +16,7 @@ void PathFinder::FindEdges(
 }
 
 void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
-                        int *dist,
-                          bool *visited,
-                          int *parent) {
+                          int *dist, bool *visited, int *parent) {
 
     Stack<int> changedIndices;
     Stack<City *> path;
@@ -74,7 +71,6 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             printf("%s ", path.top()->name);
             path.pop();
         }
-
     }
     putchar('\n');
     while (!changedIndices.empty()) {
@@ -85,10 +81,11 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
         parent[i] = -1;
     }
 }
-void PathFinder::EdgesBFS(
-    Map *map, City *city, int **road, LinkedList<City> *cities) {
-    std::queue<Position> q;
-    std::queue<Position> visited;
+void PathFinder::EdgesBFS(Map *map, City *city, int **road,
+                          LinkedList<City> *cities) {
+
+    Queue<Position> q;
+    Queue<Position> visited;
     q.push(city->pos);
     visited.push(city->pos);
     road[city->pos.y][city->pos.x] = 0;
@@ -115,7 +112,9 @@ void PathFinder::EdgesBFS(
                 // Helpers::DUMP_ROAD(map, road);
                 // #endif
                 if (map->lines[row][column] == '*') {
-                    city->AddConnection(Helpers::FindCityByPos(cities, {column, row}), road[row][column]);
+                    city->AddConnection(
+                        Helpers::FindCityByPos(cities, {column, row}),
+                        road[row][column]);
                     // city->AddConnection(
                     //     citiesByPosition.find({column, row})->second,
                     //     road[row][column]);
