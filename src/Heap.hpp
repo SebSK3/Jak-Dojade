@@ -41,8 +41,17 @@ struct Heap {
     }
     void insert(int num, int val) {
         if (size >= capacity) {
-            // Cannot insert more elements, the heap is full
-            return;
+            capacity += 50;
+            int *new_arr = new int[capacity];
+            int *new_vals = new int[capacity];
+            for (int i = 0; i < size; i++) {
+                new_arr[i] = arr[i];
+                new_vals[i] = vals[i];
+            }
+            delete[] arr;
+            delete[] vals;
+            arr = new_arr;
+            vals = new_vals;
         }
 
         int index = size;
