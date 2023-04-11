@@ -1,15 +1,15 @@
 #pragma once
 #include "City.hpp"
-const int CAPACITY_HEAPX = 500;
+#include "Config.hpp"
 struct Heap {
     int *arr;
     int *vals;
     int size = 0;
     int capacity;
     Heap() {
-        arr = new int[CAPACITY_HEAPX];
-        vals = new int[CAPACITY_HEAPX];
-        capacity = CAPACITY_HEAPX;
+        arr = new int[CAPACITY_HEAP];
+        vals = new int[CAPACITY_HEAP];
+        capacity = CAPACITY_HEAP;
     }
     ~Heap() {
         delete[] arr;
