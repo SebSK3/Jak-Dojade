@@ -40,7 +40,7 @@ struct Heap {
     }
     void insert(int num, int val) {
         if (size >= capacity) {
-            capacity += 50;
+            capacity += CAPACITY_REALLOC_EVERY;
             arr = (int*)realloc(arr, capacity * sizeof(int));
             vals = (int*)realloc(vals, capacity * sizeof(int));
             return;
