@@ -24,10 +24,10 @@ struct Stack {
             delete deletingNode;
         }
     }
-    const bool empty() {
+    const bool empty() const {
         return length == 0 ? true : false;
     }
-    const T top() {
+    const T top() const {
         return head->element;
     }
     void push(T element) {

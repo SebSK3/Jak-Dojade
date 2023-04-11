@@ -6,8 +6,7 @@ template <typename T>
 struct QueueNode {
     T element;
     QueueNode<T> *next = NULL;
-    explicit QueueNode(T el) {
-        element = el;
+    explicit QueueNode(T el): element(el) {
     }
 };
 
@@ -24,7 +23,7 @@ struct Queue {
             delete deletingNode;
         }
     }
-    const bool empty() {
+    const bool empty() const {
         return length == 0 ? true : false;
     }
     void push(T element) {
@@ -40,7 +39,7 @@ struct Queue {
         tail = nextElement;
 
     }
-    T front() {
+    const T front() const {
         return head->element;
     }
     void pop() {

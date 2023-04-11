@@ -23,15 +23,15 @@ int main() {
     map->y = y;
 
     map->lines = Input::GetMap(cities, map->x, map->y);
-
     citiesArr = new City *[cities->length + 1];
-
     Input::ExtractNames(map, cities, citiesMap, citiesArr);
 
     int flights;
     std::cin >> flights;
 
-    char name1[25], name2[25];
+
+    /* According to Wikipedia, longest city name is 85 chars */
+    char name1[86], name2[86];
     Input::GetFlight(flights, name1, name2, citiesMap);
 
 
@@ -49,8 +49,9 @@ int main() {
     }
 
     int q;
-    char *src = new char[20];
-    char *dest = new char[20];
+    /* According to Wikipedia, longest city name is 85 chars */
+    char *src = new char[86];
+    char *dest = new char[86];
     int type;
     scanf("%d", &q);
     while (q > 0) {
