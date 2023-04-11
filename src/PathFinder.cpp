@@ -28,29 +28,29 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     queue.insert(0, src->ID);
 
     while (!queue.empty()) {
-        unsigned int currNode = queue.getMin();
+        unsigned int currNodeID = queue.getMin();
         queue.pop();
-        if (visited[currNode]) {
+        if (visited[currNodeID]) {
             continue;
         }
-        visited[currNode] = true;
-        changedIndices.push(currNode);
+        visited[currNodeID] = true;
+        changedIndices.push(currNodeID);
 
-        if (currNode == dest->ID) {
+        if (currNodeID == dest->ID) {
             break;
         }
 
-        if (cities[currNode]->edges.length == 0) {
+        if (cities[currNodeID]->edges.length == 0) {
             continue;
         }
-        ListNode<City*> *node = cities[currNode]->edges.head;
+        ListNode<City*> *node = cities[currNodeID]->edges.head;
 
         while (node != NULL) {
             int neighborID = node->data->ID;
             int weight = node->weight;
-            int newDist = dist[currNode] + weight;
+            int newDist = dist[currNodeID] + weight;
             if (!visited[neighborID] && newDist < dist[neighborID]) {
-                parent[neighborID] = currNode;
+                parent[neighborID] = currNodeID;
                 dist[neighborID] = newDist;
                 queue.insert(dist[neighborID], neighborID);
                 changedIndices.push(neighborID);
