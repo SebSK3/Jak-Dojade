@@ -2,20 +2,18 @@
 #include "Config.hpp"
 #include <string.h>
 
-
 struct Hashmap {
     int size = 0;
     char ***map;
     City ***citiesArr;
 
     Hashmap() {
-        map = new char**[CAPACITY_HASHMAP];
-        citiesArr = new City**[CAPACITY_HASHMAP];
+        map = new char **[CAPACITY_HASHMAP];
+        citiesArr = new City **[CAPACITY_HASHMAP];
         for (int i = 0; i < CAPACITY_HASHMAP; i++) {
             map[i] = nullptr;
             citiesArr[i] = nullptr;
         }
-
     }
 
     ~Hashmap() {
@@ -38,10 +36,10 @@ struct Hashmap {
     void insert(char *str, City *city) {
         int hashed = hash(str);
         if (map[hashed] == nullptr) {
-            map[hashed] = new char*[2];
+            map[hashed] = new char *[2];
             map[hashed][0] = str;
             map[hashed][1] = nullptr;
-            citiesArr[hashed] = new City*[2];
+            citiesArr[hashed] = new City *[2];
             citiesArr[hashed][0] = city;
             citiesArr[hashed][1] = nullptr;
         } else {
@@ -53,10 +51,10 @@ struct Hashmap {
                 }
                 count++;
             }
-            char** temp = new char*[count + 2];
-            City** tempCity = new City*[count + 2];
-            memcpy(temp, map[hashed], count * sizeof(char*));
-            memcpy(tempCity, citiesArr[hashed], count * sizeof(City*));
+            char **temp = new char *[count + 2];
+            City **tempCity = new City *[count + 2];
+            memcpy(temp, map[hashed], count * sizeof(char *));
+            memcpy(tempCity, citiesArr[hashed], count * sizeof(City *));
             temp[count] = str;
             temp[count + 1] = nullptr;
             tempCity[count] = city;

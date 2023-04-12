@@ -1,16 +1,16 @@
 #include "City.hpp"
+#include "Hashmap.hpp"
 #include "Helpers.hpp"
 #include "Input.hpp"
 #include "PathFinder.hpp"
-#include "Hashmap.hpp"
 #include <iostream>
 
 int main() {
     /* Start the function to give every city unique ID */
-    Helpers::CITY_ID(true); 
+    Helpers::CITY_ID(true);
 
     Map *map = new Map;
-    LinkedList<City*> *cities = new LinkedList<City*>;
+    LinkedList<City *> *cities = new LinkedList<City *>;
     City **citiesArr;
     Hashmap citiesMap;
 
@@ -27,15 +27,13 @@ int main() {
     int flights;
     std::cin >> flights;
 
-
     /* According to Wikipedia, longest city name is 85 chars */
     char name1[86], name2[86];
     Input::GetFlight(flights, name1, name2, citiesMap);
 
-
     PathFinder *pathfinder = new PathFinder;
     pathfinder->FindEdges(map, cities);
-    
+
     /* Allocate once, later in use for dijkstra */
     int *dist = new int[cities->length + 1];
     bool *visited = new bool[cities->length + 1];
@@ -59,16 +57,16 @@ int main() {
             q--;
             continue;
         }
-        pathfinder->FindPath(citiesArr, citiesMap.find(src), citiesMap.find(dest), type,
-                            dist, visited, parent);
+        pathfinder->FindPath(citiesArr, citiesMap.find(src),
+                             citiesMap.find(dest), type, dist, visited, parent);
         q--;
     }
     delete[] src;
     delete[] dest;
 
-    ListNode<City*> *temp = cities->head;
+    ListNode<City *> *temp = cities->head;
     while (temp != NULL) {
-    delete temp->data;
+        delete temp->data;
         temp = temp->next;
     }
     delete[] citiesArr;

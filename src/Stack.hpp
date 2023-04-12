@@ -1,9 +1,7 @@
 #pragma once
 #include <iostream>
 
-
-template <typename T>
-struct StackNode {
+template <typename T> struct StackNode {
     T element;
     StackNode<T> *previous;
     explicit StackNode(T el) {
@@ -12,8 +10,7 @@ struct StackNode {
     }
 };
 
-template <typename T>
-struct Stack {   
+template <typename T> struct Stack {
     StackNode<T> *head = NULL;
     int length = 0;
     ~Stack() {
@@ -24,18 +21,13 @@ struct Stack {
             delete deletingNode;
         }
     }
-    const bool empty() const {
-        return length == 0 ? true : false;
-    }
-    const T top() const {
-        return head->element;
-    }
+    const bool empty() const { return length == 0 ? true : false; }
+    const T top() const { return head->element; }
     void push(T element) {
         length++;
         StackNode<T> *nextElement = new StackNode<T>(element);
         nextElement->previous = head;
         head = nextElement;
-        
     }
     void pop() {
         StackNode<T> *temp = head;

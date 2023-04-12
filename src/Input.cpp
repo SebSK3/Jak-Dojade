@@ -1,7 +1,6 @@
 #include "Input.hpp"
 
-void Input::GetFlight(int flights, char *name1, char *name2,
-                      Hashmap &cities) {
+void Input::GetFlight(int flights, char *name1, char *name2, Hashmap &cities) {
 
     int weight = 0;
     int i = 0;
@@ -21,12 +20,11 @@ void Input::GetFlight(int flights, char *name1, char *name2,
         name2[i] = '\0';
         i = 0;
         std::scanf("%d", &weight);
-        cities.find(name1)->edges.append(cities.find(name2),
-                                                  weight);
+        cities.find(name1)->edges.append(cities.find(name2), weight);
         flights--;
     }
 }
-char **Input::GetMap(LinkedList<City*> *list, int x, int y) {
+char **Input::GetMap(LinkedList<City *> *list, int x, int y) {
     char **map = new char *[y + 2];
     map[y + 1] = NULL;
     for (int i = 0; i < y; i++) {
@@ -45,12 +43,11 @@ char **Input::GetMap(LinkedList<City*> *list, int x, int y) {
     return map;
 }
 
-void Input::ExtractNames(Map *map, LinkedList<City*> *cities,
-                         Hashmap &citiesMap,
-                         City **citiesArr) {
+void Input::ExtractNames(Map *map, LinkedList<City *> *cities,
+                         Hashmap &citiesMap, City **citiesArr) {
     if (cities->head == NULL)
         return;
-    ListNode<City*> *tempCity = cities->head;
+    ListNode<City *> *tempCity = cities->head;
     while (tempCity != NULL) {
 
         Position foundCoords;

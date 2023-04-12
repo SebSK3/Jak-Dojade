@@ -4,8 +4,7 @@
 
 class City;
 
-template<typename T>
-struct ListNode {
+template <typename T> struct ListNode {
     T data;
     int weight;
     ListNode<T> *next;
@@ -16,8 +15,7 @@ struct ListNode {
     }
 };
 
-template<typename T>
-struct LinkedList {   
+template <typename T> struct LinkedList {
     ListNode<T> *head = NULL;
     ListNode<T> *tail = NULL;
     int length = 0;
@@ -40,6 +38,5 @@ struct LinkedList {
         }
         tail->next = nextElement;
         tail = nextElement;
-
     }
 };

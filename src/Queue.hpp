@@ -1,17 +1,13 @@
 #pragma once
 #include <iostream>
 
-
-template <typename T>
-struct QueueNode {
+template <typename T> struct QueueNode {
     T element;
     QueueNode<T> *next = NULL;
-    explicit QueueNode(T el): element(el) {
-    }
+    explicit QueueNode(T el) : element(el) {}
 };
 
-template <typename T>
-struct Queue {   
+template <typename T> struct Queue {
     QueueNode<T> *head = NULL;
     QueueNode<T> *tail = NULL;
     int length = 0;
@@ -23,11 +19,9 @@ struct Queue {
             delete deletingNode;
         }
     }
-    const bool empty() const {
-        return length == 0 ? true : false;
-    }
+    const bool empty() const { return length == 0 ? true : false; }
     void push(T element) {
-        
+
         length++;
         QueueNode<T> *nextElement = new QueueNode<T>(element);
         if (length == 1) {
@@ -37,11 +31,8 @@ struct Queue {
         }
         tail->next = nextElement;
         tail = nextElement;
-
     }
-    const T front() const {
-        return head->element;
-    }
+    const T front() const { return head->element; }
     void pop() {
         QueueNode<T> *temp = head;
         head = head->next;

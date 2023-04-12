@@ -1,9 +1,9 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
 
-void PathFinder::FindEdges(Map *map, LinkedList<City*> *cities) {
+void PathFinder::FindEdges(Map *map, LinkedList<City *> *cities) {
     int **road = createRoad(map);
-    ListNode<City*> *tempNode = cities->head;
+    ListNode<City *> *tempNode = cities->head;
     while (tempNode != NULL) {
         PathFinder::EdgesBFS(map, tempNode->data, road, cities);
         tempNode = tempNode->next;
@@ -43,7 +43,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
         if (cities[currNodeID]->edges.length == 0) {
             continue;
         }
-        ListNode<City*> *node = cities[currNodeID]->edges.head;
+        ListNode<City *> *node = cities[currNodeID]->edges.head;
 
         while (node != NULL) {
             int neighborID = node->data->ID;
@@ -81,7 +81,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
     }
 }
 void PathFinder::EdgesBFS(Map *map, City *city, int **road,
-                          LinkedList<City*> *cities) {
+                          LinkedList<City *> *cities) {
     Queue<Position> q;
     Queue<Position> visited;
     q.push(city->pos);

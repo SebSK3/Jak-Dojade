@@ -3,16 +3,16 @@
 #include "Helpers.hpp"
 #include "LinkedList.hpp"
 
-
 class City {
-public:
+  public:
     City(char *name, Position position);
     ~City();
     void AddConnection(City *city, int weight);
 
-    LinkedList<City*> edges;
+    LinkedList<City *> edges;
     char *name;
-    unsigned int ID = 0;   
+    unsigned int ID = 0;
     Position pos;
-private:
+
+  private:
 };

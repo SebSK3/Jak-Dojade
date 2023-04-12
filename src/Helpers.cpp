@@ -6,8 +6,8 @@ bool Helpers::IsCharacter(char c) {
     return false;
 }
 
-City *Helpers::FindCityByPos(LinkedList<City*> *cities, Position pos) {
-    ListNode<City*> *temp = cities->head;
+City *Helpers::FindCityByPos(LinkedList<City *> *cities, Position pos) {
+    ListNode<City *> *temp = cities->head;
     while (temp != NULL) {
         if (temp->data->pos == pos) {
             return temp->data;
@@ -36,22 +36,24 @@ char *Helpers::BuildCityName(Map *map, Position coords) {
     int i = coords.x;
 
     int nameLength = 1;
-    while (InsideMap(map, {i, coords.y}) && IsCharacter(map->lines[coords.y][i])) {
+    while (InsideMap(map, {i, coords.y}) &&
+           IsCharacter(map->lines[coords.y][i])) {
         i--;
         nameLength++;
     }
     nameLength--;
     int j = coords.x;
-    while (InsideMap(map, {j, coords.y}) && IsCharacter(map->lines[coords.y][j])) {
+    while (InsideMap(map, {j, coords.y}) &&
+           IsCharacter(map->lines[coords.y][j])) {
         j++;
         nameLength++;
     }
     nameLength--;
     i++;
-    char *name = new char[nameLength+1];
+    char *name = new char[nameLength + 1];
     name[nameLength] = '\0';
-    for (int k=0; k<nameLength; k++) {
-        name[k] = map->lines[coords.y][i+k];
+    for (int k = 0; k < nameLength; k++) {
+        name[k] = map->lines[coords.y][i + k];
     }
     return name;
 }
@@ -116,7 +118,7 @@ void Helpers::DUMP_GRAPH(City *city) {
     }
     delete[] visited;
 }
-void Helpers::DUMP_LIST(LinkedList<City*> *list) {
+void Helpers::DUMP_LIST(LinkedList<City *> *list) {
     ListNode *iter = list->head;
     while (iter != NULL) {
         City *u = iter->city;
@@ -126,14 +128,14 @@ void Helpers::DUMP_LIST(LinkedList<City*> *list) {
 }
 
 void Helpers::DUMP_ROAD(Map *map, int **road) {
-    for (int i=0; i<map->y; i++) {
-        for (int j=0; j<map->x; j++) {
+    for (int i = 0; i < map->y; i++) {
+        for (int j = 0; j < map->x; j++) {
             std::cout << road[i][j] << "  ";
         }
 
         std::cout << std::endl;
     }
-        std::cout << std::endl;
-        std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
 }
 #endif
