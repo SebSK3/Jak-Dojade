@@ -41,7 +41,7 @@ struct Heap {
     }
     void insert(int num, int val) {
         if (size >= capacity) {
-            capacity += 50;
+            capacity *= CAPACITY_REALLOC_EVERY;
             int *new_arr = new int[capacity];
             int *new_vals = new int[capacity];
             for (int i = 0; i < size; i++) {
