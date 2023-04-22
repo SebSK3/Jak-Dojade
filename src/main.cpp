@@ -45,7 +45,7 @@ int main() {
     }
 
     int q;
-    /* According to Wikipedia, longest city name is 85 chars */
+    /* According to Wikipedia, longest city name in the world is 85 chars */
     char *src = new char[86];
     char *dest = new char[86];
     int type;
