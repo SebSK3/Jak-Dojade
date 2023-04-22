@@ -25,7 +25,8 @@ struct Hashmap {
         delete[] map;
     }
 
-    static int hash(char *str) {
+    /* Found online, credits goes to Dan Bernstein http://www.cse.yorku.ca/~oz/hash.html */
+    static unsigned int hash(char *str) {
         unsigned long int hash = 0;
         for (unsigned int i = 0; i < strlen(str); i++) {
             hash = str[i] + (hash << 6) + (hash << 16) - hash;
