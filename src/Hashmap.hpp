@@ -25,7 +25,8 @@ struct Hashmap {
         delete[] map;
     }
 
-    /* Found online, credits goes to Dan Bernstein http://www.cse.yorku.ca/~oz/hash.html */
+    /* Found online, credits goes to Dan Bernstein
+     * http://www.cse.yorku.ca/~oz/hash.html */
     static unsigned int hash(char *str) {
         unsigned long int hash = 0;
         for (unsigned int i = 0; i < strlen(str); i++) {
@@ -47,7 +48,7 @@ struct Hashmap {
         } else {
             /* Slot not free */
             int count = 0;
-            
+
             /* Check for duplicate, and count how much needed for copy */
             while (map[hashed][count] != nullptr) {
                 if (strcmp(map[hashed][count], str) == 0) {
@@ -56,7 +57,7 @@ struct Hashmap {
                 }
                 count++;
             }
-            
+
             /* Make new array and copy everything to new one in free slot */
             char **temp = new char *[count + 2];
             City **tempCity = new City *[count + 2];

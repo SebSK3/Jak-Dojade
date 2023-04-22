@@ -57,7 +57,7 @@ void JakDojade::GetPath() {
     }
 
     int q;
-    /* According to Wikipedia, longest city name in the world is 85 chars, 
+    /* According to Wikipedia, longest city name in the world is 85 chars,
      * so there's some room if wikipedia is wrong */
     char *src = new char[100];
     char *dest = new char[100];
@@ -71,7 +71,8 @@ void JakDojade::GetPath() {
             continue;
         }
         pathfinder->FindPath(citiesArr, *citiesMap.find(src),
-                             *citiesMap.find(dest), type, dist, visited, parent);
+                             *citiesMap.find(dest), type, dist, visited,
+                             parent);
         q--;
     }
     delete[] src;

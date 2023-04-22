@@ -16,8 +16,9 @@ void PathFinder::FindEdges(Map *map, LinkedList<City *> *cities) {
     delete[] road;
 }
 
-void PathFinder::FindPath(City **cities, const City &src, const City &dest, const bool &type,
-                          int *dist, bool *visited, int *parent) {
+void PathFinder::FindPath(City **cities, const City &src, const City &dest,
+                          const bool &type, int *dist, bool *visited,
+                          int *parent) {
 
     Stack<int> changedIndices;
     Stack<City *> path;

@@ -8,8 +8,9 @@
 class PathFinder {
   public:
     void FindEdges(Map *map, LinkedList<City *> *cities);
-    static void FindPath(City **cities, const City &src, const City &dest, const bool &type,
-                         int *dist, bool *visited, int *parent);
+    static void FindPath(City **cities, const City &src, const City &dest,
+                         const bool &type, int *dist, bool *visited,
+                         int *parent);
 
   private:
     int **createRoad(Map *map);

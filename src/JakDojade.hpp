@@ -6,7 +6,7 @@
 #include <iostream>
 
 class JakDojade {
-    public:
+  public:
     ~JakDojade();
     void Start();
 
