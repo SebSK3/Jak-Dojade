@@ -1,0 +1,3 @@
+class JakDojade {
+    void Start();
+};
