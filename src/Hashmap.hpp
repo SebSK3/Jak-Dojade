@@ -36,6 +36,7 @@ struct Hashmap {
     void insert(char *str, City *city) {
         int hashed = hash(str);
         if (map[hashed] == nullptr) {
+            /* Create city array in free slot, for chaining */
             map[hashed] = new char *[2];
             map[hashed][0] = str;
             map[hashed][1] = nullptr;
@@ -43,7 +44,10 @@ struct Hashmap {
             citiesArr[hashed][0] = city;
             citiesArr[hashed][1] = nullptr;
         } else {
+            /* Slot not free */
             int count = 0;
+            
+            /* Check for duplicate, and count how much needed for copy */
             while (map[hashed][count] != nullptr) {
                 if (strcmp(map[hashed][count], str) == 0) {
                     citiesArr[hashed][count] = city;
@@ -51,6 +55,8 @@ struct Hashmap {
                 }
                 count++;
             }
+            
+            /* Make new array and copy everything to new one in free slot */
             char **temp = new char *[count + 2];
             City **tempCity = new City *[count + 2];
             memcpy(temp, map[hashed], count * sizeof(char *));
