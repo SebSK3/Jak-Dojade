@@ -8,13 +8,13 @@ bool Helpers::IsCharacter(char c) {
 
 City *Helpers::FindCityByPos(LinkedList<City *> *cities, Position pos) {
     ListNode<City *> *temp = cities->head;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         if (temp->data->pos == pos) {
             return temp->data;
         }
         temp = temp->next;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool Helpers::InsideMap(const Map &map, Position coords) {
@@ -74,7 +74,7 @@ void Helpers::DUMP_CITY(City *city) {
     char *empty = new char[6];
     strcpy(empty, "EMPTY");
     char *name;
-    if (city->name != NULL) {
+    if (city->name != nullptr) {
         name = city->name;
         delete[] empty;
     } else {
@@ -83,10 +83,10 @@ void Helpers::DUMP_CITY(City *city) {
 
     std::cout << "City " << name << "(ID:" << city->ID
               << ") dumped:" << std::endl;
-    ListNode *tempList = NULL;
+    ListNode *tempList = nullptr;
     if (city->edges.length != 0)
         tempList = city->edges.head;
-    while (tempList != NULL) {
+    while (tempList != nullptr) {
         std::cout << "Connected: " << tempList->city->name
                   << " (ID:" << tempList->city->ID
                   << "), with weight: " << tempList->weight << std::endl;
@@ -107,7 +107,7 @@ void Helpers::DUMP_GRAPH(City *city) {
         queue.pop();
         DUMP_CITY(v);
         ListNode *iter = v->edges.head;
-        while (iter != NULL) {
+        while (iter != nullptr) {
             City *u = iter->city;
             if (!visited[u->ID]) {
                 visited[u->ID] = true;
@@ -120,7 +120,7 @@ void Helpers::DUMP_GRAPH(City *city) {
 }
 void Helpers::DUMP_LIST(LinkedList<City *> *list) {
     ListNode *iter = list->head;
-    while (iter != NULL) {
+    while (iter != nullptr) {
         City *u = iter->city;
         DUMP_CITY(u);
         iter = iter->next;

@@ -1,4 +1,5 @@
 #include "Input.hpp"
+#include <iostream>
 
 void Input::GetFlight(int &flights, char *name1, char *name2, Hashmap *cities) {
 
@@ -26,13 +27,13 @@ void Input::GetFlight(int &flights, char *name1, char *name2, Hashmap *cities) {
 }
 char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
     char **map = new char *[y + 2];
-    map[y + 1] = NULL;
+    map[y + 1] = nullptr;
     for (int i = 0; i < y; i++) {
         char *line = new char[x + 1];
         for (int j = 0; j < x; j++) {
             scanf("%c", &line[j]);
             if (line[j] == '*') {
-                list->append(new City(NULL, {j, i}));
+                list->append(new City(nullptr, {j, i}));
             }
         }
         line[x] = '\0';
@@ -45,10 +46,10 @@ char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
 
 void Input::ExtractNames(const Map &map, LinkedList<City *> *cities,
                          Hashmap *citiesMap, City **citiesArr) {
-    if (cities->head == NULL)
+    if (cities->head == nullptr)
         return;
     ListNode<City *> *tempCity = cities->head;
-    while (tempCity != NULL) {
+    while (tempCity != nullptr) {
 
         Position foundCoords;
         bool found = false;

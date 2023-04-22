@@ -1,10 +1,11 @@
 #include "PathFinder.hpp"
 #include "City.hpp"
+#include <iostream>
 
 void PathFinder::FindEdges(Map *map, LinkedList<City *> *cities) {
     int **road = createRoad(map);
     ListNode<City *> *tempNode = cities->head;
-    while (tempNode != NULL) {
+    while (tempNode != nullptr) {
         PathFinder::EdgesBFS(map, tempNode->data, road, cities);
         tempNode = tempNode->next;
     }
@@ -45,7 +46,7 @@ void PathFinder::FindPath(City **cities, const City &src, const City &dest, cons
         }
         ListNode<City *> *node = cities[currNodeID]->edges.head;
 
-        while (node != NULL) {
+        while (node != nullptr) {
             int neighborID = node->data->ID;
             int weight = node->weight;
             int newDist = dist[currNodeID] + weight;

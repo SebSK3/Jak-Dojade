@@ -1,21 +1,20 @@
 #pragma once
-#include <iostream>
 
 template <typename T> struct StackNode {
     T element;
     StackNode<T> *previous;
     explicit StackNode(T el) {
         element = el;
-        previous = NULL;
+        previous = nullptr;
     }
 };
 
 template <typename T> struct Stack {
-    StackNode<T> *head = NULL;
+    StackNode<T> *head = nullptr;
     int length = 0;
     ~Stack() {
         StackNode<T> *temp = head;
-        while (temp != NULL) {
+        while (temp != nullptr) {
             StackNode<T> *deletingNode = temp;
             temp = temp->previous;
             delete deletingNode;

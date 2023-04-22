@@ -65,7 +65,7 @@ int main() {
     delete[] dest;
 
     ListNode<City *> *temp = cities->head;
-    while (temp != NULL) {
+    while (temp != nullptr) {
         delete temp->data;
         temp = temp->next;
     }

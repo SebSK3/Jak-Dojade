@@ -69,13 +69,13 @@ struct Hashmap {
     City *find(char *str) {
         int hashed = hash(str);
         if (map[hashed] == nullptr) {
-            return NULL;
+            return nullptr;
         }
         for (int i = 0; map[hashed][i] != nullptr; i++) {
             if (strcmp(map[hashed][i], str) == 0) {
                 return citiesArr[hashed][i];
             }
         }
-        return NULL;
+        return nullptr;
     }
 };
