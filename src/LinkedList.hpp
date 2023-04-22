@@ -1,6 +1,5 @@
 #pragma once
 #include "Structures.hpp"
-#include <iostream>
 
 class City;
 
@@ -11,17 +10,17 @@ template <typename T> struct ListNode {
     ListNode(T data, int weight = 0) {
         this->data = data;
         this->weight = weight;
-        next = NULL;
+        next = nullptr;
     }
 };
 
 template <typename T> struct LinkedList {
-    ListNode<T> *head = NULL;
-    ListNode<T> *tail = NULL;
+    ListNode<T> *head = nullptr;
+    ListNode<T> *tail = nullptr;
     int length = 0;
     ~LinkedList<T>() {
         ListNode<T> *current = head;
-        while (current != NULL) {
+        while (current != nullptr) {
             ListNode<T> *next = current->next;
             delete current;
             current = next;
@@ -31,7 +30,7 @@ template <typename T> struct LinkedList {
         length++;
         ListNode<T> *nextElement = new ListNode<T>(element, weight);
         /* First element in list */
-        if (head == NULL) {
+        if (head == nullptr) {
             head = nextElement;
             tail = nextElement;
             return;

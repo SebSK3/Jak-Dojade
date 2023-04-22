@@ -1,19 +1,18 @@
 #pragma once
-#include <iostream>
 
 template <typename T> struct QueueNode {
     T element;
-    QueueNode<T> *next = NULL;
+    QueueNode<T> *next = nullptr;
     explicit QueueNode(T el) : element(el) {}
 };
 
 template <typename T> struct Queue {
-    QueueNode<T> *head = NULL;
-    QueueNode<T> *tail = NULL;
+    QueueNode<T> *head = nullptr;
+    QueueNode<T> *tail = nullptr;
     int length = 0;
     ~Queue() {
         QueueNode<T> *temp = head;
-        while (temp != NULL) {
+        while (temp != nullptr) {
             QueueNode<T> *deletingNode = temp;
             temp = temp->next;
             delete deletingNode;

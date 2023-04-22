@@ -2,7 +2,6 @@
 #include "City.hpp"
 #include "Hashmap.hpp"
 #include "LinkedList.hpp"
-#include <iostream>
 
 namespace Input {
 char **GetMap(LinkedList<City *> *list, const int &x, const int &y);
