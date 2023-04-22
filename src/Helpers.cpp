@@ -17,13 +17,13 @@ City *Helpers::FindCityByPos(LinkedList<City *> *cities, Position pos) {
     return NULL;
 }
 
-bool Helpers::InsideMap(Map *map, Position coords) {
-    if (map->x - 1 < coords.x)
+bool Helpers::InsideMap(const Map &map, Position coords) {
+    if (map.x - 1 < coords.x)
         return false;
     if (coords.x < 0) {
         return false;
     }
-    if (map->y - 1 < coords.y) {
+    if (map.y - 1 < coords.y) {
         return false;
     }
     if (coords.y < 0) {
@@ -32,19 +32,19 @@ bool Helpers::InsideMap(Map *map, Position coords) {
     return true;
 }
 
-char *Helpers::BuildCityName(Map *map, Position coords) {
+char *Helpers::BuildCityName(const Map &map, Position coords) {
     int i = coords.x;
 
     int nameLength = 1;
     while (InsideMap(map, {i, coords.y}) &&
-           IsCharacter(map->lines[coords.y][i])) {
+           IsCharacter(map.lines[coords.y][i])) {
         i--;
         nameLength++;
     }
     nameLength--;
     int j = coords.x;
     while (InsideMap(map, {j, coords.y}) &&
-           IsCharacter(map->lines[coords.y][j])) {
+           IsCharacter(map.lines[coords.y][j])) {
         j++;
         nameLength++;
     }
@@ -53,7 +53,7 @@ char *Helpers::BuildCityName(Map *map, Position coords) {
     char *name = new char[nameLength + 1];
     name[nameLength] = '\0';
     for (int k = 0; k < nameLength; k++) {
-        name[k] = map->lines[coords.y][i + k];
+        name[k] = map.lines[coords.y][i + k];
     }
     return name;
 }

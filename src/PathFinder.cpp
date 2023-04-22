@@ -98,7 +98,7 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                 }
                 int column = current.x + dc;
                 int row = current.y + dr;
-                if (!Helpers::InsideMap(map, {column, row}) ||
+                if (!Helpers::InsideMap(*map, {column, row}) ||
                     (map->lines[row][column] != '#' &&
                      map->lines[row][column] != '*') ||
                     road[row][column] >= 0) {
@@ -106,16 +106,10 @@ void PathFinder::EdgesBFS(Map *map, City *city, int **road,
                 }
                 road[row][column] = road[current.y][current.x] + 1;
                 visited.push({column, row});
-                // #ifdef DEBUG
-                // Helpers::DUMP_ROAD(map, road);
-                // #endif
                 if (map->lines[row][column] == '*') {
                     city->AddConnection(
                         Helpers::FindCityByPos(cities, {column, row}),
                         road[row][column]);
-                    // city->AddConnection(
-                    //     citiesByPosition.find({column, row})->second,
-                    //     road[row][column]);
                 } else {
                     q.push({column, row});
                 }

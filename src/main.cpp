@@ -22,7 +22,7 @@ int main() {
 
     map->lines = Input::GetMap(cities, map->x, map->y);
     citiesArr = new City *[cities->length + 1];
-    Input::ExtractNames(map, cities, citiesMap, citiesArr);
+    Input::ExtractNames(*map, cities, &citiesMap, citiesArr);
 
     int flights;
     std::cin >> flights;
