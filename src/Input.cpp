@@ -1,8 +1,10 @@
 #include "Input.hpp"
 #include <iostream>
 
-void Input::GetFlight(int &flights, char *name1, char *name2, Hashmap *cities) {
+void Input::GetFlights(char *name1, char *name2, Hashmap *cities) {
 
+    int flights;
+    scanf("%d", &flights);
     int weight = 0;
     int i = 0;
     while (flights > 0) {
