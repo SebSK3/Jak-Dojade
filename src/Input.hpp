@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace Input {
-char **GetMap(LinkedList<City *> *list, int x, int y);
+char **GetMap(LinkedList<City *> *list, const int &x, const int &y);
 void GetFlight(int flights, char *name1, char *name2, Hashmap &cities);
 void ExtractNames(Map *map, LinkedList<City *> *cities, Hashmap &citiesMap,
                   City **citiesArr);

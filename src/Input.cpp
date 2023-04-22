@@ -24,7 +24,7 @@ void Input::GetFlight(int flights, char *name1, char *name2, Hashmap &cities) {
         flights--;
     }
 }
-char **Input::GetMap(LinkedList<City *> *list, int x, int y) {
+char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
     char **map = new char *[y + 2];
     map[y + 1] = NULL;
     for (int i = 0; i < y; i++) {
