@@ -15,17 +15,17 @@ void PathFinder::FindEdges(Map *map, LinkedList<City *> *cities) {
     delete[] road;
 }
 
-void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
+void PathFinder::FindPath(City **cities, const City &src, const City &dest, const bool &type,
                           int *dist, bool *visited, int *parent) {
 
     Stack<int> changedIndices;
     Stack<City *> path;
 
-    dist[src->ID] = 0;
-    changedIndices.push(src->ID);
+    dist[src.ID] = 0;
+    changedIndices.push(src.ID);
 
     PriorityQueue queue;
-    queue.insert(0, src->ID);
+    queue.insert(0, src.ID);
 
     while (!queue.empty()) {
         unsigned int currNodeID = queue.getMin();
@@ -36,7 +36,7 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
         visited[currNodeID] = true;
         changedIndices.push(currNodeID);
 
-        if (currNodeID == dest->ID) {
+        if (currNodeID == dest.ID) {
             break;
         }
 
@@ -58,10 +58,10 @@ void PathFinder::FindPath(City **cities, City *src, City *dest, bool type,
             node = node->next;
         }
     }
-    printf("%d", dist[dest->ID]);
+    printf("%d", dist[dest.ID]);
     if (type) {
-        unsigned int curr = parent[dest->ID];
-        while (curr != src->ID) {
+        unsigned int curr = parent[dest.ID];
+        while (curr != src.ID) {
             path.push(cities[curr]);
             curr = parent[curr];
         }
