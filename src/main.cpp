@@ -29,7 +29,7 @@ int main() {
 
     /* According to Wikipedia, longest city name is 85 chars */
     char name1[86], name2[86];
-    Input::GetFlight(flights, name1, name2, citiesMap);
+    Input::GetFlight(flights, name1, name2, &citiesMap);
 
     PathFinder *pathfinder = new PathFinder;
     pathfinder->FindEdges(map, cities);
