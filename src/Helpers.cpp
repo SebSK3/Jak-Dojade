@@ -1,4 +1,5 @@
 #include "Helpers.hpp"
+#include <iostream>
 
 bool Helpers::IsCharacter(char c) {
     if (isalnum(c))
