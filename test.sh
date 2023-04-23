@@ -18,7 +18,8 @@ output_file="tests/${test_number}.out"
 
 exec 3< "$output_file"
 count=1
-$PROGRAM < "$input_file" | while IFS= read -r line; do
+exit_status=0  # Initialize exit_status to 0
+while IFS= read -r line; do
     IFS= read -r expected <&3
     line="${line%"${line##*[![:space:]]}"}"
     expected="${expected%"${expected##*[![:space:]]}"}"
@@ -26,9 +27,11 @@ $PROGRAM < "$input_file" | while IFS= read -r line; do
         echo "Difference found on line $count:"
         echo "Expected: $expected"
         echo "Actual  : $line"
-        exit 1
-#        break
+        exit_status=1
+        break
     fi
     count=$((count + 1))
-done
+done < <($PROGRAM < "$input_file")  # Redirect input to the loop
 exec 3<&-
+
+exit $exit_status
