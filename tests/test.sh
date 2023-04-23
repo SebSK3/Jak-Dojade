@@ -26,6 +26,7 @@ $PROGRAM < "$input_file" | while IFS= read -r line; do
         echo "Difference found on line $count:"
         echo "Expected: $expected"
         echo "Actual  : $line"
+        exit 1
 #        break
     fi
     count=$((count + 1))
