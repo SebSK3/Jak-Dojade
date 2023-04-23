@@ -1,4 +1,5 @@
 #!/bin/bash
+
 PROGRAM="./build/Jak_Dojade"
 
 if [ ! -f "$PROGRAM" ]; then
