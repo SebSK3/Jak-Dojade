@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROGRAM="../build/Jak_Dojade"
+PROGRAM="./build/Jak_Dojade"
 
 if [ ! -f "$PROGRAM" ]; then
     echo "Error: Program '$PROGRAM' not found."
@@ -13,8 +13,8 @@ if [ $# -ne 1 ]; then
 fi
 
 test_number=$1
-input_file="${test_number}.in"
-output_file="${test_number}.out"
+input_file="tests/${test_number}.in"
+output_file="tests/${test_number}.out"
 
 exec 3< "$output_file"
 count=1
