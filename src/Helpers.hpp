@@ -7,7 +7,7 @@ namespace Helpers {
 bool InsideMap(const Map &map, Position coords);
 bool IsCharacter(char c);
 City *FindCityByPos(LinkedList<City *> *cities, Position pos);
-char *BuildCityName(const Map &map, Position coords);
+char *BuildCityName(Map *map, Position coords);
 unsigned int CITY_ID(bool firstUsed = false, bool shouldIncrement = true);
 #ifdef DEBUG
 void DUMP_CITY(City *city);
