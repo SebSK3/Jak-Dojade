@@ -49,13 +49,14 @@ char *Helpers::BuildCityName(Map *map, Position coords) {
         j++;
         nameLength++;
     }
-    nameLength--;
+    if (nameLength >= 0)
+        nameLength--;
     i++;
     char *name = new char[nameLength + 1];
     name[nameLength] = '\0';
     for (int k = 0; k < nameLength; k++) {
         name[k] = map->lines[coords.y][i + k];
-        map->lines[coords.y][i+k] = '.';
+        map->lines[coords.y][i + k] = '.';
     }
     return name;
 }
