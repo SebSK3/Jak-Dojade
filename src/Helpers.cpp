@@ -49,8 +49,6 @@ char *Helpers::BuildCityName(Map *map, Position coords) {
         j++;
         nameLength++;
     }
-    if (nameLength >= 0)
-        nameLength--;
     i++;
     char *name = new char[nameLength + 1];
     name[nameLength] = '\0';
