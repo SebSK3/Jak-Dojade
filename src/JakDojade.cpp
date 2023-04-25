@@ -41,7 +41,7 @@ void JakDojade::GetMap() {
     }
 #endif
     citiesArr = new City *[cities->length + 1];
-    Input::ExtractNames(*map, cities, &citiesMap, citiesArr);
+    Input::ExtractNames(map, cities, &citiesMap, citiesArr);
 }
 
 void JakDojade::GetFlights() {
