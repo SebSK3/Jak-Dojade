@@ -43,28 +43,28 @@ bool Helpers::InsideMap(const Map &map, Position coords) {
     return true;
 }
 
-char *Helpers::BuildCityName(const Map &map, Position coords) {
+char *Helpers::BuildCityName(Map *map, Position coords) {
     int i = coords.x;
 
     int nameLength = 1;
-    while (InsideMap(map, {i, coords.y}) &&
-           IsCharacter(map.lines[coords.y][i])) {
+    while (InsideMap(*map, {i, coords.y}) &&
+           IsCharacter(map->lines[coords.y][i])) {
         i--;
         nameLength++;
     }
     nameLength--;
     int j = coords.x;
-    while (InsideMap(map, {j, coords.y}) &&
-           IsCharacter(map.lines[coords.y][j])) {
+    while (InsideMap(*map, {j, coords.y}) &&
+           IsCharacter(map->lines[coords.y][j])) {
         j++;
         nameLength++;
     }
-    nameLength--;
     i++;
     char *name = new char[nameLength + 1];
     name[nameLength] = '\0';
     for (int k = 0; k < nameLength; k++) {
-        name[k] = map.lines[coords.y][i + k];
+        name[k] = map->lines[coords.y][i + k];
+        map->lines[coords.y][i + k] = '.';
     }
     return name;
 }

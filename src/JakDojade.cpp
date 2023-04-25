@@ -42,12 +42,12 @@ void JakDojade::GetMap() {
 #endif
     citiesArr = new City *[cities->length + 1];
     Input::ExtractNames(*map, cities, &citiesMap, citiesArr);
-
 }
 
 void JakDojade::GetFlights() {
-    /* According to Wikipedia, longest city name is 85 chars */
-    char name1[86], name2[86];
+    /* According to Wikipedia, longest city name in the world is 85 chars,
+     * so there's some room if wikipedia is wrong */
+    char name1[100], name2[100];
     Input::GetFlights(name1, name2, &citiesMap);
 }
 

@@ -55,7 +55,7 @@ char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
     return map;
 }
 
-void Input::ExtractNames(const Map &map, LinkedList<City *> *cities,
+void Input::ExtractNames(Map *map, LinkedList<City *> *cities,
                          Hashmap *citiesMap, City **citiesArr) {
     if (cities->head == nullptr)
         return;
@@ -72,8 +72,8 @@ void Input::ExtractNames(const Map &map, LinkedList<City *> *cities,
 
                 int x = tempCity->data->pos.x + dx;
                 int y = tempCity->data->pos.y + dy;
-                if (Helpers::InsideMap(map, {x, y}) &&
-                    Helpers::IsCharacter(map.lines[y][x])) {
+                if (Helpers::InsideMap(*map, {x, y}) &&
+                    Helpers::IsCharacter(map->lines[y][x])) {
                     foundCoords = {x, y};
                     found = true;
                     break;
