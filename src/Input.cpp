@@ -11,14 +11,18 @@ void Input::GetFlights(char *name1, char *name2, Hashmap *cities) {
         char c = '.';
         getchar();
         while ((c = getchar()) != ' ') {
-            name1[i] = c;
-            i++;
+            if (Helpers::isNotWeirdAsciiChar(c)) {
+                name1[i] = c;
+                i++;
+            }
         }
         name1[i] = '\0';
         i = 0;
         while ((c = getchar()) != ' ') {
-            name2[i] = c;
-            i++;
+            if (Helpers::isNotWeirdAsciiChar(c)) {
+                name2[i] = c;
+                i++;
+            }
         }
         name2[i] = '\0';
         i = 0;
@@ -33,16 +37,20 @@ char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
     for (int i = 0; i < y; i++) {
         char *line = new char[x + 1];
         for (int j = 0; j < x; j++) {
-            scanf("%c", &line[j]);
-            if (line[j] == '*') {
-                list->append(new City(nullptr, {j, i}));
+            char c = getchar();
+            if (Helpers::isNotWeirdAsciiChar(c)) {
+                line[j] = c;
+                if (line[j] == '*') {
+                    list->append(new City(nullptr, {j, i}));
+                }
+            } else {
+                j--;
             }
         }
         line[x] = '\0';
         map[i] = line;
         getchar();
     }
-
     return map;
 }
 
