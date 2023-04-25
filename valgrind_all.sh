@@ -14,12 +14,15 @@ if [ $# -ne 0 ]; then
     exit 1
 fi
 
-for input_file in tests/*.in; do
-    $VALGRIND $PROGRAM < "$input_file"
-    if [ $? -eq 1 ]; then
+for input_file in $(ls tests/*.in | sort -n -t / -k 2); do
+    echo -n "Testing $input_file"
+    $VALGRIND $PROGRAM < "$input_file" >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo " == PASSED"
+    else
         RETVAL=1
+        echo " == FAILED"
         break
     fi
 done
-
 exit $RETVAL
