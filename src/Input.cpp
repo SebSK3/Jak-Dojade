@@ -10,7 +10,7 @@ void Input::GetFlights(char *name1, char *name2, Hashmap *cities) {
     while (flights > 0) {
         char c = '.';
         getchar();
-        while ((c = getchar()) != ' ') {
+        while ((c = fgetc(stdin)) != ' ') {
             if (Helpers::isNotWeirdAsciiChar(c)) {
                 name1[i] = c;
                 i++;
@@ -18,7 +18,7 @@ void Input::GetFlights(char *name1, char *name2, Hashmap *cities) {
         }
         name1[i] = '\0';
         i = 0;
-        while ((c = getchar()) != ' ') {
+        while ((c = fgetc(stdin)) != ' ') {
             if (Helpers::isNotWeirdAsciiChar(c)) {
                 name2[i] = c;
                 i++;
@@ -37,7 +37,7 @@ char **Input::GetMap(LinkedList<City *> *list, const int &x, const int &y) {
     for (int i = 0; i < y; i++) {
         char *line = new char[x + 1];
         for (int j = 0; j < x; j++) {
-            char c = getchar();
+            char c = fgetc(stdin);
             if (Helpers::isNotWeirdAsciiChar(c)) {
                 line[j] = c;
                 if (line[j] == '*') {
