@@ -30,8 +30,18 @@ void JakDojade::GetMap() {
     map->x = x;
     map->y = y;
     map->lines = Input::GetMap(cities, map->x, map->y);
+#ifdef DEBUG
+    std::cout << std::endl;
+    std::cout << std::endl;
+    for (int i=0; i<map->y; i++) {
+        for (int j=0; j<map->x; j++) {
+            std::cout << map->lines[i][j];
+        }
+        std::cout << std::endl;
+    }
+#endif
     citiesArr = new City *[cities->length + 1];
-    Input::ExtractNames(map, cities, &citiesMap, citiesArr);
+    Input::ExtractNames(*map, cities, &citiesMap, citiesArr);
 }
 
 void JakDojade::GetFlights() {

@@ -7,6 +7,16 @@ bool Helpers::IsCharacter(char c) {
     return false;
 }
 
+bool Helpers::isNotWeirdAsciiChar(char c) {
+    if (isalnum(c)) {
+        return true;
+    }
+    if (c == 35 || c == 42 || c == 46) {
+        return true;
+    }
+    return false;
+}
+
 City *Helpers::FindCityByPos(LinkedList<City *> *cities, Position pos) {
     ListNode<City *> *temp = cities->head;
     while (temp != nullptr) {
@@ -70,73 +80,3 @@ unsigned int Helpers::CITY_ID(bool firstUsed, bool shouldIncrement) {
     return id;
 }
 
-#ifdef DEBUG
-void Helpers::DUMP_CITY(City *city) {
-    char *empty = new char[6];
-    strcpy(empty, "EMPTY");
-    char *name;
-    if (city->name != nullptr) {
-        name = city->name;
-        delete[] empty;
-    } else {
-        name = empty;
-    }
-
-    std::cout << "City " << name << "(ID:" << city->ID
-              << ") dumped:" << std::endl;
-    ListNode *tempList = nullptr;
-    if (city->edges.length != 0)
-        tempList = city->edges.head;
-    while (tempList != nullptr) {
-        std::cout << "Connected: " << tempList->city->name
-                  << " (ID:" << tempList->city->ID
-                  << "), with weight: " << tempList->weight << std::endl;
-        tempList = tempList->next;
-    }
-}
-void Helpers::DUMP_GRAPH(City *city) {
-    int count = CITY_ID(false, false);
-    bool *visited = new bool[count];
-    std::queue<City *> queue;
-    for (int i = 0; i < count; i++) {
-        visited[i] = false;
-    }
-    queue.push(city);
-    visited[city->ID] = true;
-    while (!queue.empty()) {
-        City *v = queue.front();
-        queue.pop();
-        DUMP_CITY(v);
-        ListNode *iter = v->edges.head;
-        while (iter != nullptr) {
-            City *u = iter->city;
-            if (!visited[u->ID]) {
-                visited[u->ID] = true;
-                queue.push(u);
-            }
-            iter = iter->next;
-        }
-    }
-    delete[] visited;
-}
-void Helpers::DUMP_LIST(LinkedList<City *> *list) {
-    ListNode *iter = list->head;
-    while (iter != nullptr) {
-        City *u = iter->city;
-        DUMP_CITY(u);
-        iter = iter->next;
-    }
-}
-
-void Helpers::DUMP_ROAD(Map *map, int **road) {
-    for (int i = 0; i < map->y; i++) {
-        for (int j = 0; j < map->x; j++) {
-            std::cout << road[i][j] << "  ";
-        }
-
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-    std::cout << std::endl;
-}
-#endif
