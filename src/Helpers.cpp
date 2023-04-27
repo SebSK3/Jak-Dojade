@@ -11,7 +11,7 @@ bool Helpers::isNotWeirdAsciiChar(char c) {
     if (isalnum(c)) {
         return true;
     }
-    if (c == 35 || c == 42 || c == 46) {
+    if (c == 35 || c == 42 || c == 46 || c == 95) {
         return true;
     }
     return false;
